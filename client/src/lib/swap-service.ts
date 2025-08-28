@@ -16,18 +16,18 @@ export class SwapService {
     console.log('🔗 External wallet set for SwapService');
   }
 
-  async swapSolToGold(solAmount: number): Promise<{ signature: string; goldAmount: number }> {
+  async swapSolToGold(solAmount: number): Promise<{ signature: string; goldAmount: number; success: boolean; error?: string }> {
     const goldAmount = solAmount * 21486.893;
     const signature = 'mock-swap-signature-' + Date.now();
     console.log(`✅ Mock swap: ${solAmount} SOL → ${goldAmount.toFixed(2)} GOLD`);
-    return { signature, goldAmount };
+    return { signature, goldAmount, success: true };
   }
 
-  async swapGoldToSol(goldAmount: number): Promise<{ signature: string; solAmount: number }> {
+  async swapGoldToSol(goldAmount: number): Promise<{ signature: string; solAmount: number; success: boolean; error?: string }> {
     const solAmount = goldAmount / 21486.893;
     const signature = 'mock-swap-signature-' + Date.now();
     console.log(`✅ Mock swap: ${goldAmount} GOLD → ${solAmount.toFixed(6)} SOL`);
-    return { signature, solAmount };
+    return { signature, solAmount, success: true };
   }
 
   async stakeGold(amount: number, stakingPool: string): Promise<string> {

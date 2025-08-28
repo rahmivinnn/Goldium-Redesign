@@ -33,7 +33,7 @@ export function useExternalWalletBalances() {
       let goldBalance = 0;
       try {
         // Fetch real SPL token balance using the wallet's public key
-        goldBalance = await splTokenService.getGoldBalance(wallet.publicKey);
+        goldBalance = await splTokenService.getGoldBalance(wallet.publicKey.toString());
       } catch (error) {
         console.warn('GOLD balance fetch error:', error);
         goldBalance = 0;

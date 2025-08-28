@@ -34,29 +34,27 @@ class MockGoldTokenService {
     const signature = 'mock-transfer-signature-' + Date.now();
     
     // Track the transaction for real-time monitoring
-    solscanTracker.trackTransaction(signature, {
-      type: 'transfer',
-      amount: amount,
-      from: fromWallet.publicKey?.toString() || 'unknown',
-      to: toAddress,
-      timestamp: Date.now()
+    solscanTracker.trackTransaction({
+      signature: signature,
+      type: 'send',
+      token: 'GOLD',
+      amount: amount
     });
     
     return signature;
   }
 
-  async stakeGold(wallet: any, amount: number, stakingPool: string): Promise<string> {
+  async stakeGold(wallet: any, amount: number, stakingPool: string = 'default'): Promise<string> {
     console.log(`🥩 Mock stake: ${amount} GOLD to pool ${stakingPool}`);
     
     const signature = 'mock-stake-signature-' + Date.now();
     
     // Track the staking transaction
-    solscanTracker.trackTransaction(signature, {
+    solscanTracker.trackTransaction({
+      signature: signature,
       type: 'stake',
-      amount: amount,
-      from: wallet.publicKey?.toString() || 'unknown',
-      to: stakingPool,
-      timestamp: Date.now()
+      token: 'GOLD',
+      amount: amount
     });
     
     return signature;
@@ -69,14 +67,11 @@ class MockGoldTokenService {
     const signature = 'mock-buy-signature-' + Date.now();
     
     // Track the purchase transaction
-    solscanTracker.trackTransaction(signature, {
-      type: 'buy',
-      amount: goldAmount,
-      solAmount: solAmount,
-      from: wallet.publicKey?.toString() || 'unknown',
-      to: 'treasury',
-      timestamp: Date.now(),
-      contractAddress: GOLD_CONTRACT_ADDRESS
+    solscanTracker.trackTransaction({
+      signature: signature,
+      type: 'swap',
+      token: 'GOLD',
+      amount: goldAmount
     });
     
     // Update local balance tracking
@@ -89,6 +84,40 @@ class MockGoldTokenService {
   async sendGold(wallet: any, recipientAddress: string, amount: number): Promise<string> {
     console.log(`📤 Mock send: ${amount} GOLD to ${recipientAddress}`);
     return this.transferGold(wallet, recipientAddress, amount);
+  }
+
+  async getStakedGoldBalance(walletAddress: string): Promise<number> {
+    console.log(`🥩 Mock getting staked balance for ${walletAddress}`);
+    return 500; // Mock staked balance
+  }
+
+  async unstakeGold(wallet: any, amount: number, stakingPool: string = 'default'): Promise<string> {
+    console.log(`🔓 Mock unstake: ${amount} GOLD from pool ${stakingPool}`);
+    const signature = 'mock-unstake-signature-' + Date.now();
+    
+    // Track the unstaking transaction
+    solscanTracker.trackTransaction({
+      signature: signature,
+      type: 'unstake',
+      token: 'GOLD',
+      amount: amount
+    });
+    
+    return signature;
+  }
+
+  async swapSolForGold(wallet: any, solAmount: number): Promise<string> {
+    console.log(`💰 Mock swap: ${solAmount} SOL for GOLD`);
+    return this.buyGoldWithSol(wallet, solAmount);
+  }
+
+  getStakingInfo(): any {
+    return {
+      totalStaked: 10000,
+      userStaked: 500,
+      apy: 12.5,
+      rewards: 25
+    };
   }
 }
 

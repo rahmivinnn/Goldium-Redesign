@@ -114,7 +114,14 @@ export function FixedStakingTab() {
       // Auto-save stake transaction to history
       try {
         if (walletState.address) {
-          await autoSaveTransaction({
+          autoSaveTransaction(
+            walletState.address,
+            'tx-' + Date.now(),
+            'stake',
+            0, // SOL amount
+            Number(stakeAmount) // GOLD amount
+          );
+          /*autoSaveTransaction('tx-' + Date.now(), {
             type: 'stake',
             fromToken: 'GOLD',
             toToken: 'GOLD',
@@ -123,7 +130,7 @@ export function FixedStakingTab() {
             txSignature,
             timestamp: Date.now(),
             walletAddress: walletState.address
-          });
+          });*/
         }
       } catch (error) {
         console.error('Failed to auto-save stake transaction:', error);
@@ -200,7 +207,14 @@ export function FixedStakingTab() {
       // Auto-save unstake transaction to history
       try {
         if (walletState.address) {
-          await autoSaveTransaction({
+          autoSaveTransaction(
+            walletState.address,
+            'tx-' + Date.now(),
+            'stake',
+            0, // SOL amount
+            Number(stakeAmount) // GOLD amount
+          );
+          /*autoSaveTransaction('tx-' + Date.now(), {
             type: 'unstake',
             fromToken: 'GOLD',
             toToken: 'GOLD',
@@ -209,7 +223,7 @@ export function FixedStakingTab() {
             txSignature,
             timestamp: Date.now(),
             walletAddress: walletState.address
-          });
+          });*/
         }
       } catch (error) {
         console.error('Failed to auto-save unstake transaction:', error);

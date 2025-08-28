@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Trophy, 
   Medal, 
@@ -13,429 +12,283 @@ import {
   Award,
   Sparkles,
   ChevronDown,
-  ChevronUp
 } from 'lucide-react';
 
-interface LeaderboardUser {
-  id: string;
-  username: string;
-  avatar: string;
+type LeaderboardPeriod = 'daily' | 'weekly' | 'monthly';
+
+interface LeaderboardEntry {
   rank: number;
-  score: number;
-  change: number;
-  badge: string;
-  level: number;
+  username: string;
+  points: number;
+  avatar: string;
+  badges: string[];
   streak: number;
-  isOnline: boolean;
   totalVolume: string;
-  achievements: string[];
+  winRate: number;
 }
 
-// Mock data for demonstration
-const mockUsers: LeaderboardUser[] = [
+const mockLeaderboardData: LeaderboardEntry[] = [
   {
-    id: '1',
-    username: 'CryptoNinja',
-    avatar: '🥷',
     rank: 1,
-    score: 15420,
-    change: 5,
-    badge: 'Diamond',
-    level: 42,
-    streak: 15,
-    isOnline: true,
+    username: 'CryptoKing👑',
+    points: 15420,
+    avatar: '🚀',
+    badges: ['🏆', '💎', '🔥'],
+    streak: 7,
     totalVolume: '$2.4M',
-    achievements: ['First Trade', 'Volume King', 'Streak Master']
+    winRate: 94.2
   },
   {
-    id: '2',
-    username: 'DeFiQueen',
-    avatar: '👑',
     rank: 2,
-    score: 12890,
-    change: 2,
-    badge: 'Platinum',
-    level: 38,
-    streak: 8,
-    isOnline: true,
-    totalVolume: '$1.8M',
-    achievements: ['Staking Pro', 'Community Leader']
-  },
-  {
-    id: '3',
-    username: 'SolanaWizard',
-    avatar: '🧙‍♂️',
-    rank: 3,
-    score: 11250,
-    change: -1,
-    badge: 'Gold',
-    level: 35,
-    streak: 12,
-    isOnline: false,
-    totalVolume: '$1.5M',
-    achievements: ['Early Adopter', 'Yield Farmer']
-  },
-  {
-    id: '4',
-    username: 'TokenHunter',
-    avatar: '🏹',
-    rank: 4,
-    score: 9870,
-    change: 3,
-    badge: 'Silver',
-    level: 31,
+    username: 'DeFiQueen💫',
+    points: 12890,
+    avatar: '⭐',
+    badges: ['🥈', '💎', '⚡'],
     streak: 5,
-    isOnline: true,
-    totalVolume: '$980K',
-    achievements: ['Lucky Trader']
+    totalVolume: '$1.8M',
+    winRate: 91.7
   },
   {
-    id: '5',
-    username: 'YieldMaster',
-    avatar: '⚡',
-    rank: 5,
-    score: 8640,
-    change: -2,
-    badge: 'Bronze',
-    level: 28,
-    streak: 3,
-    isOnline: true,
-    totalVolume: '$750K',
-    achievements: ['Consistent Trader']
-  }
+    rank: 3,
+    username: 'DiamondHands💎',
+    points: 11750,
+    avatar: '💎',
+    badges: ['🥉', '🔥', '💪'],
+    streak: 12,
+    totalVolume: '$1.5M',
+    winRate: 88.3
+  },
+  // More entries...
+  ...Array.from({ length: 7 }, (_, i) => ({
+    rank: i + 4,
+    username: `Trader${i + 4}`,
+    points: 10000 - (i * 500),
+    avatar: ['🌟', '⚡', '🎯', '🎮', '🚀', '🌈', '🎪'][i],
+    badges: ['🎖️'],
+    streak: Math.floor(Math.random() * 10) + 1,
+    totalVolume: `$${(Math.random() * 1000).toFixed(0)}K`,
+    winRate: Math.random() * 30 + 70
+  }))
 ];
 
-const getRankIcon = (rank: number) => {
-  switch (rank) {
-    case 1:
-      return <Crown className="w-6 h-6 text-yellow-500" />;
-    case 2:
-      return <Medal className="w-6 h-6 text-gray-400" />;
-    case 3:
-      return <Award className="w-6 h-6 text-amber-600" />;
-    default:
-      return <Trophy className="w-5 h-5 text-gray-500" />;
-  }
-};
+export const ModernGenZLeaderboard: React.FC = () => {
+  const [selectedPeriod, setSelectedPeriod] = useState<LeaderboardPeriod>('weekly');
+  const [expandedUser, setExpandedUser] = useState<number | null>(null);
 
-const getBadgeColor = (badge: string) => {
-  switch (badge.toLowerCase()) {
-    case 'diamond':
-      return 'from-cyan-400 to-blue-500';
-    case 'platinum':
-      return 'from-gray-300 to-gray-500';
-    case 'gold':
-      return 'from-yellow-400 to-orange-500';
-    case 'silver':
-      return 'from-gray-200 to-gray-400';
-    case 'bronze':
-      return 'from-amber-600 to-amber-800';
-    default:
-      return 'from-gray-100 to-gray-300';
-  }
-};
-
-export function ModernGenZLeaderboard() {
-  const [selectedUser, setSelectedUser] = useState<string | null>(null);
-  const [timeframe, setTimeframe] = useState<'daily' | 'weekly' | 'monthly'>('weekly');
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
+  const getRankIcon = (rank: number) => {
+    switch (rank) {
+      case 1:
+        return <Crown className="w-6 h-6 text-yellow-500" />;
+      case 2:
+        return <Medal className="w-6 h-6 text-gray-400" />;
+      case 3:
+        return <Trophy className="w-6 h-6 text-amber-600" />;
+      default:
+        return <span className="text-lg font-bold text-gray-500">#{rank}</span>;
+    }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
+  const getPodiumHeight = (rank: number) => {
+    switch (rank) {
+      case 1: return 'h-32';
+      case 2: return 'h-24';
+      case 3: return 'h-20';
+      default: return 'h-16';
+    }
   };
+
+  const topThree = mockLeaderboardData.slice(0, 3);
+  const otherEntries = mockLeaderboardData.slice(3);
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8"
-      >
-        <div className="flex items-center justify-center space-x-3 mb-4">
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Trophy className="w-8 h-8 text-yellow-500" />
-          </motion.div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Community Leaderboard
-          </h2>
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <Sparkles className="w-6 h-6 text-pink-500" />
-          </motion.div>
-        </div>
-        
-        {/* Timeframe Selector */}
-        <div className="flex items-center justify-center space-x-2">
-          {(['daily', 'weekly', 'monthly'] as const).map((period) => (
-            <motion.button
+      <div className="text-center mb-8">
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+          🏆 Trading Champions
+        </h2>
+        <p className="text-gray-600 text-lg">
+          Top performers competing for glory and rewards
+        </p>
+      </div>
+
+      {/* Period Selector */}
+      <div className="flex justify-center mb-8">
+        <div className="bg-white/60 backdrop-blur-sm border border-purple-200 rounded-2xl p-1 flex">
+          {(['daily', 'weekly', 'monthly'] as LeaderboardPeriod[]).map((period) => (
+            <button
               key={period}
               className={`px-4 py-2 rounded-2xl font-medium transition-all duration-300 ${
-                timeframe === period
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
-                  : 'glass-button text-gray-600 hover:text-gray-800'
+                selectedPeriod === period
+                  ? 'bg-purple-500 text-white shadow-lg'
+                  : 'text-gray-600 hover:text-purple-600'
               }`}
-              onClick={() => setTimeframe(period)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              onClick={() => setSelectedPeriod(period)}
             >
               {period.charAt(0).toUpperCase() + period.slice(1)}
-            </motion.button>
+            </button>
           ))}
         </div>
-      </motion.div>
+      </div>
 
-      {/* Top 3 Podium */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="grid grid-cols-3 gap-4 mb-8"
-      >
+      {/* Podium */}
+      <div className="grid grid-cols-3 gap-4 mb-8">
         {/* Second Place */}
-        <motion.div variants={itemVariants} className="flex flex-col items-center">
-          <div className="glass-card p-6 rounded-3xl text-center hover-lift w-full">
-            <div className="relative mb-4">
-              <div className="w-16 h-16 text-4xl flex items-center justify-center rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 mx-auto">
-                {mockUsers[1].avatar}
-              </div>
-              <div className="absolute -top-2 -right-2">
-                <Medal className="w-8 h-8 text-gray-400" />
-              </div>
-              {mockUsers[1].isOnline && (
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white" />
-              )}
+        <div className="flex flex-col items-center">
+          <div className="relative mb-4">
+            <div className="w-20 h-20 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full flex items-center justify-center text-2xl shadow-lg">
+              {topThree[1]?.avatar}
             </div>
-            <h3 className="font-bold text-gray-800 mb-1">{mockUsers[1].username}</h3>
-            <p className="text-sm text-gray-600 mb-2">Level {mockUsers[1].level}</p>
-            <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${getBadgeColor(mockUsers[1].badge)}`}>
-              {mockUsers[1].badge}
+            <div className="absolute -top-3 -right-3">
+              <Medal className="w-6 h-6 text-gray-400" />
             </div>
           </div>
-        </motion.div>
+          <h3 className="font-bold text-gray-800">{topThree[1]?.username}</h3>
+          <p className="text-purple-600 font-semibold">{topThree[1]?.points.toLocaleString()} pts</p>
+          <div className="flex space-x-1 mt-2">
+            {topThree[1]?.badges.map((badge, i) => (
+              <span key={i} className="text-sm">{badge}</span>
+            ))}
+          </div>
+        </div>
 
         {/* First Place */}
-        <motion.div variants={itemVariants} className="flex flex-col items-center -mt-4">
-          <div className="glass-card p-8 rounded-3xl text-center hover-lift w-full border-2 border-yellow-300/50">
-            <motion.div
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="relative mb-4"
-            >
-              <div className="w-20 h-20 text-5xl flex items-center justify-center rounded-3xl bg-gradient-to-br from-yellow-100 to-yellow-200 mx-auto">
-                {mockUsers[0].avatar}
+        <div className="flex flex-col items-center -mt-4">
+          <div className="relative mb-4">
+            <div className="w-24 h-24 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full flex items-center justify-center text-3xl shadow-xl">
+              {topThree[0]?.avatar}
+            </div>
+            <div className="absolute -top-3 -right-3">
+              <Crown className="w-8 h-8 text-yellow-500" />
+            </div>
+            {topThree[0]?.streak > 5 && (
+              <div className="absolute -top-3 -right-3">
+                <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                  <Fire className="w-4 h-4 text-white" />
+                </div>
               </div>
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="absolute -top-3 -right-3"
-              >
-                <Crown className="w-10 h-10 text-yellow-500" />
-              </motion.div>
-              {mockUsers[0].isOnline && (
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white" />
-              )}
-            </motion.div>
-            <h3 className="font-bold text-gray-800 mb-1 text-lg">{mockUsers[0].username}</h3>
-            <p className="text-sm text-gray-600 mb-2">Level {mockUsers[0].level}</p>
-            <div className={`inline-block px-4 py-2 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getBadgeColor(mockUsers[0].badge)}`}>
-              👑 {mockUsers[0].badge}
-            </div>
-            <div className="flex items-center justify-center space-x-2 mt-3">
-              <Fire className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-medium text-orange-600">{mockUsers[0].streak} day streak</span>
-            </div>
+            )}
           </div>
-        </motion.div>
+          <h3 className="font-bold text-gray-800 text-lg">{topThree[0]?.username}</h3>
+          <p className="text-purple-600 font-bold text-xl">{topThree[0]?.points.toLocaleString()} pts</p>
+          <div className="flex space-x-1 mt-2">
+            {topThree[0]?.badges.map((badge, i) => (
+              <span key={i} className="text-lg">{badge}</span>
+            ))}
+          </div>
+        </div>
 
         {/* Third Place */}
-        <motion.div variants={itemVariants} className="flex flex-col items-center">
-          <div className="glass-card p-6 rounded-3xl text-center hover-lift w-full">
-            <div className="relative mb-4">
-              <div className="w-16 h-16 text-4xl flex items-center justify-center rounded-2xl bg-gradient-to-br from-amber-100 to-amber-200 mx-auto">
-                {mockUsers[2].avatar}
-              </div>
-              <div className="absolute -top-2 -right-2">
-                <Award className="w-8 h-8 text-amber-600" />
-              </div>
-              {mockUsers[2].isOnline && (
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white" />
-              )}
+        <div className="flex flex-col items-center">
+          <div className="relative mb-4">
+            <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-2xl shadow-lg">
+              {topThree[2]?.avatar}
             </div>
-            <h3 className="font-bold text-gray-800 mb-1">{mockUsers[2].username}</h3>
-            <p className="text-sm text-gray-600 mb-2">Level {mockUsers[2].level}</p>
-            <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${getBadgeColor(mockUsers[2].badge)}`}>
-              {mockUsers[2].badge}
+            <div className="absolute -top-3 -right-3">
+              <Trophy className="w-6 h-6 text-amber-600" />
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+          <h3 className="font-bold text-gray-800">{topThree[2]?.username}</h3>
+          <p className="text-purple-600 font-semibold">{topThree[2]?.points.toLocaleString()} pts</p>
+          <div className="flex space-x-1 mt-2">
+            {topThree[2]?.badges.map((badge, i) => (
+              <span key={i} className="text-sm">{badge}</span>
+            ))}
+          </div>
+        </div>
+      </div>
 
-      {/* Full Leaderboard */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="glass-card rounded-3xl p-6"
-      >
-        <div className="space-y-3">
-          {mockUsers.map((user, index) => (
-            <motion.div
-              key={user.id}
-              variants={itemVariants}
+      {/* Leaderboard List */}
+      <div className="glass-card rounded-3xl p-6">
+        <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <Users className="w-5 h-5 mr-2" />
+          Full Leaderboard
+        </h3>
+        
+        <div className="space-y-2">
+          {otherEntries.map((entry) => (
+            <div
+              key={entry.rank}
               className={`p-4 rounded-2xl transition-all duration-300 cursor-pointer ${
-                selectedUser === user.id 
-                  ? 'bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-300' 
-                  : 'bg-white/50 hover:bg-white/70'
+                expandedUser === entry.rank
+                  ? 'bg-purple-50 border-2 border-purple-200'
+                  : 'bg-white/50 hover:bg-white/80 border border-gray-200'
               }`}
-              onClick={() => setSelectedUser(selectedUser === user.id ? null : user.id)}
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
+              onClick={() => setExpandedUser(expandedUser === entry.rank ? null : entry.rank)}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  {/* Rank */}
                   <div className="flex items-center justify-center w-8 h-8">
-                    {getRankIcon(user.rank)}
-                  </div>
-
-                  {/* Avatar & Info */}
-                  <div className="flex items-center space-x-3">
-                    <div className="relative">
-                      <div className="w-12 h-12 text-2xl flex items-center justify-center rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200">
-                        {user.avatar}
-                      </div>
-                      {user.isOnline && (
-                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
-                      )}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-800">{user.username}</h4>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-sm text-gray-600">Level {user.level}</span>
-                        <div className={`px-2 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${getBadgeColor(user.badge)}`}>
-                          {user.badge}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Stats */}
-                <div className="flex items-center space-x-6">
-                  <div className="text-right">
-                    <div className="font-bold text-gray-800">{user.score.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600">Points</div>
+                    {getRankIcon(entry.rank)}
                   </div>
                   
-                  <div className="flex items-center space-x-1">
-                    {user.change > 0 ? (
-                      <TrendingUp className="w-4 h-4 text-green-500" />
-                    ) : user.change < 0 ? (
-                      <TrendingUp className="w-4 h-4 text-red-500 rotate-180" />
-                    ) : (
-                      <div className="w-4 h-4" />
-                    )}
-                    <span className={`text-sm font-medium ${
-                      user.change > 0 ? 'text-green-600' : user.change < 0 ? 'text-red-600' : 'text-gray-600'
-                    }`}>
-                      {user.change > 0 ? '+' : ''}{user.change}
-                    </span>
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-lg">
+                    {entry.avatar}
                   </div>
-
-                  <motion.div
-                    animate={{ rotate: selectedUser === user.id ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ChevronDown className="w-5 h-5 text-gray-400" />
-                  </motion.div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-gray-800">{entry.username}</h4>
+                    <p className="text-sm text-gray-500">{entry.points.toLocaleString()} points</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-gray-800">{entry.totalVolume}</div>
+                    <div className="text-xs text-gray-500">Volume</div>
+                  </div>
+                  
+                  <div className="flex space-x-1">
+                    {entry.badges.map((badge, i) => (
+                      <span key={i} className="text-sm">{badge}</span>
+                    ))}
+                  </div>
+                  
+                  <ChevronDown 
+                    className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                      expandedUser === entry.rank ? 'rotate-180' : ''
+                    }`} 
+                  />
                 </div>
               </div>
-
-              {/* Expanded Details */}
-              <AnimatePresence>
-                {selectedUser === user.id && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-4 pt-4 border-t border-gray-200"
-                  >
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-gray-800">{user.totalVolume}</div>
-                        <div className="text-sm text-gray-600">Total Volume</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="flex items-center justify-center space-x-1">
-                          <Fire className="w-4 h-4 text-orange-500" />
-                          <span className="text-lg font-bold text-gray-800">{user.streak}</span>
-                        </div>
-                        <div className="text-sm text-gray-600">Day Streak</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-gray-800">{user.achievements.length}</div>
-                        <div className="text-sm text-gray-600">Achievements</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="flex items-center justify-center space-x-1">
-                          <Star className="w-4 h-4 text-yellow-500" />
-                          <span className="text-lg font-bold text-gray-800">{user.level}</span>
-                        </div>
-                        <div className="text-sm text-gray-600">Level</div>
-                      </div>
+              
+              {expandedUser === entry.rank && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="text-center">
+                      <div className="font-semibold text-gray-800">{entry.winRate.toFixed(1)}%</div>
+                      <div className="text-gray-500">Win Rate</div>
                     </div>
-                    
-                    {/* Achievements */}
-                    <div className="mt-4">
-                      <h5 className="text-sm font-semibold text-gray-700 mb-2">Recent Achievements</h5>
-                      <div className="flex flex-wrap gap-2">
-                        {user.achievements.map((achievement, idx) => (
-                          <motion.span
-                            key={idx}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 text-yellow-800 text-xs font-medium rounded-full"
-                          >
-                            🏆 {achievement}
-                          </motion.span>
-                        ))}
-                      </div>
+                    <div className="text-center">
+                      <div className="font-semibold text-gray-800">{entry.streak}</div>
+                      <div className="text-gray-500">Streak</div>
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+                    <div className="text-center">
+                      <div className="font-semibold text-gray-800">{entry.totalVolume}</div>
+                      <div className="text-gray-500">Total Volume</div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {[
+                      { label: 'High Volume Trader', color: 'bg-blue-100 text-blue-800' },
+                      { label: 'Consistent Performer', color: 'bg-green-100 text-green-800' },
+                      { label: 'Community Favorite', color: 'bg-purple-100 text-purple-800' }
+                    ].map((achievement, i) => (
+                      <div
+                        key={i}
+                        className="px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 text-yellow-800 text-xs font-medium rounded-full"
+                      >
+                        {achievement.label}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
-}
+};

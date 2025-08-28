@@ -86,7 +86,7 @@ export function SwapTab() {
 
       // Auto-save transaction to history
       try {
-        if (wallet.publicKey) {
+        if (typeof wallet === 'object' && wallet.publicKey) {
           const walletAddress = wallet.publicKey.toString();
 
           // Calculate amounts for the new history format

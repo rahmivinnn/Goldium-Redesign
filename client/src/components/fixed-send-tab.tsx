@@ -169,16 +169,13 @@ export function FixedSendTab() {
       // Auto-save send transaction to history
       try {
         if (walletState.address) {
-          await autoSaveTransaction({
-            type: 'send',
-            fromToken: selectedToken,
-            toToken: selectedToken,
-            fromAmount: sendAmount,
-            toAmount: sendAmount,
-            txSignature,
-            timestamp: Date.now(),
-            walletAddress: walletState.address
-          });
+          autoSaveTransaction(
+            walletState.address,
+            'tx-' + Date.now(),
+            'send',
+            selectedToken === 'SOL' ? sendAmount : 0,
+            selectedToken === 'GOLD' ? sendAmount : 0
+          );
         }
       } catch (error) {
         console.error('Failed to auto-save send transaction:', error);
@@ -320,12 +317,9 @@ export function FixedSendTab() {
         <TransactionSuccessModal
           isOpen={showSuccessModal}
           onClose={() => setShowSuccessModal(false)}
-          transaction={completedTransaction}
-          onViewTransaction={() => {
-            if (completedTransaction.txSignature) {
-              window.open(`${SOLSCAN_BASE_URL}/tx/${completedTransaction.txSignature}`, '_blank');
-            }
-          }}
+          transactionType="send"
+          amount={Number(amount) || 0}
+          txSignature={completedTransaction?.txSignature || ''}
         />
       )}
     </div>

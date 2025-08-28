@@ -36,22 +36,16 @@ export function ModernHero() {
       <div className="relative max-w-7xl mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+          <div
             className="space-y-8"
           >
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <div
               className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full px-4 py-2"
             >
               <Sparkles className="w-4 h-4 text-purple-600" />
               <span className="text-sm font-medium text-purple-700">Next-Gen Web3 Finance</span>
-            </motion.div>
+            </div>
 
             {/* Main Heading */}
             <div className="space-y-4">
@@ -69,74 +63,52 @@ export function ModernHero() {
             </div>
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+            <div
               className="flex flex-col sm:flex-row gap-4"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
                 className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg flex items-center justify-center space-x-2 hover:shadow-lg transition-shadow duration-300"
               >
                 <span>Start Trading</span>
                 <ArrowRight className="w-5 h-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </button>
+              <button
                 className="bg-white/80 backdrop-blur-sm border border-purple-200 text-purple-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white transition-colors duration-300"
               >
                 Learn More
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
             {/* Features */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+            <div
               className="grid grid-cols-1 sm:grid-cols-3 gap-4"
             >
               {features.map((feature, index) => (
-                <motion.div
+                <div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
                   className="bg-white/60 backdrop-blur-sm border border-purple-100 rounded-2xl p-4 hover:bg-white/80 transition-colors duration-300"
                 >
                   <feature.icon className="w-6 h-6 text-purple-600 mb-2" />
                   <h3 className="font-semibold text-gray-800 mb-1">{feature.title}</h3>
                   <p className="text-sm text-gray-600">{feature.description}</p>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right Content - Stats Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div
             className="space-y-6"
           >
             {/* Main Stats Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+            <div
               className="bg-white/80 backdrop-blur-xl border border-purple-200/50 rounded-3xl p-8 shadow-xl"
             >
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Platform Stats</h3>
               <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, index) => (
-                  <motion.div
+                  <div
                     key={stat.label}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
                     className="text-center"
                   >
                     <div className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-3`}>
@@ -144,16 +116,13 @@ export function ModernHero() {
                     </div>
                     <div className="text-2xl font-bold text-gray-800 mb-1">{stat.value}</div>
                     <div className="text-sm text-gray-600">{stat.label}</div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Floating Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+            <div
               className="bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200 rounded-3xl p-6"
             >
               <div className="flex items-center space-x-4">
@@ -165,12 +134,9 @@ export function ModernHero() {
                   <p className="text-sm text-gray-600">Join 50K+ users in the future of finance</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+            <div
               className="bg-gradient-to-r from-cyan-100 to-blue-100 border border-cyan-200 rounded-3xl p-6"
             >
               <div className="flex items-center space-x-4">
@@ -182,8 +148,8 @@ export function ModernHero() {
                   <p className="text-sm text-gray-600">Transactions in under 1 second</p>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

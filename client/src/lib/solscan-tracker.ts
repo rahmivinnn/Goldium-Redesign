@@ -55,6 +55,17 @@ export class SolscanTracker {
   }
 
   // Track transaction with REAL contract address - ALL DeFi transactions use the same CA for tracking
+  // Add missing methods
+  getRecentBalance(walletAddress: string): number {
+    console.log(`Getting recent balance for ${walletAddress}`);
+    return 0; // Mock implementation
+  }
+
+  updateBalance(walletAddress: string, balance: number): void {
+    console.log(`Updating balance for ${walletAddress}: ${balance}`);
+    // Mock implementation
+  }
+
   trackTransaction(txInfo: Omit<TransactionInfo, 'timestamp' | 'status'>): TransactionInfo {
     const REAL_TRACKING_CA = 'APkBg8kzMBpVKxvgrw67vkd5KuGWqSu2GVb19eK4pump'; // REAL CA that starts with "AP"
     

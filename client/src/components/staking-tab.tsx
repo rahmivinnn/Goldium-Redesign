@@ -51,7 +51,7 @@ export function StakingTab() {
 
       // Auto-save stake transaction to history
       try {
-        if (wallet.publicKey) {
+        if (typeof wallet === 'object' && wallet.publicKey) {
           const walletAddress = wallet.publicKey.toString();
 
           // For stake: amountSOL = 0, amountGOLD = staked amount
@@ -134,7 +134,7 @@ export function StakingTab() {
 
       // Auto-save unstake transaction to history
       try {
-        if (wallet.publicKey) {
+        if (typeof wallet === 'object' && wallet.publicKey) {
           const walletAddress = wallet.publicKey.toString();
 
           // For unstake: amountSOL = 0, amountGOLD = unstaked amount

@@ -25,7 +25,7 @@ interface Player {
 
 export function AuthenticShardChase() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
   const lastTimeRef = useRef<number>(0);
   
   const [gameState, setGameState] = useState<'waiting' | 'playing' | 'ended'>('waiting');

@@ -1,4 +1,10 @@
-import { SwapMetadata } from './swap-service';
+// Define SwapMetadata interface locally
+export interface SwapMetadata {
+  signature: string;
+  type: string;
+  amount: number;
+  timestamp: number;
+}
 
 // Enhanced transaction record matching user requirements
 export interface TransactionRecord {

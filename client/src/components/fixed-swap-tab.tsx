@@ -242,7 +242,14 @@ export function FixedSwapTab() {
       }
 
       // Save transaction to history
-      await autoSaveTransaction({
+      autoSaveTransaction(
+        walletState.address || 'unknown',
+        'tx-' + Date.now(),
+        'swap',
+        fromToken === 'SOL' ? amount : Number(toAmount),
+        fromToken === 'GOLD' ? amount : Number(toAmount)
+      );
+      /*autoSaveTransaction('tx-' + Date.now(), {
         type: 'swap',
         fromToken,
         toToken: fromToken === 'SOL' ? 'GOLD' : 'SOL',
@@ -251,7 +258,7 @@ export function FixedSwapTab() {
         txSignature,
         timestamp: Date.now(),
         walletAddress: walletState.address || 'unknown'
-      });
+      });*/
 
       // Notify contract tracker about the transaction
       console.log('🔍 Swap transaction completed, contract tracker will detect it automatically');
@@ -465,12 +472,9 @@ export function FixedSwapTab() {
         <TransactionSuccessModal
           isOpen={showSuccessModal}
           onClose={() => setShowSuccessModal(false)}
-          transaction={completedTransaction}
-          onViewTransaction={() => {
-            if (lastTxId) {
-              window.open(`${SOLSCAN_BASE_URL}/tx/${lastTxId}`, '_blank');
-            }
-          }}
+          transactionType="swap"
+          amount={fromAmount || 0}
+          txSignature={completedTransaction?.txSignature || ''}
         />
       )}
     </div>

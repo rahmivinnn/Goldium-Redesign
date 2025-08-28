@@ -60,11 +60,8 @@ export function ModernGenZButton({
   const buttonContent = (
     <>
       {/* Shimmer Effect */}
-      <motion.div
+      <div
         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-        initial={{ x: '-100%' }}
-        whileHover={{ x: '100%' }}
-        transition={{ duration: 0.6, ease: 'easeInOut' }}
       />
       
       {/* Content */}
@@ -74,21 +71,17 @@ export function ModernGenZButton({
         ) : (
           <>
             {icon && iconPosition === 'left' && (
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.2 }}
+              <div
               >
                 {icon}
-              </motion.div>
+              </div>
             )}
             <span>{children}</span>
             {icon && iconPosition === 'right' && (
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                transition={{ duration: 0.2 }}
+              <div
               >
                 {icon}
-              </motion.div>
+              </div>
             )}
           </>
         )}
@@ -97,28 +90,14 @@ export function ModernGenZButton({
   );
 
   return (
-    <motion.button
+    <button
       type={type}
       className={baseClasses}
       onClick={onClick}
       disabled={disabled || isLoading}
-      whileHover={{ 
-        scale: disabled ? 1 : 1.05,
-        y: disabled ? 0 : -2,
-        boxShadow: disabled ? undefined : "0 20px 40px rgba(168, 85, 247, 0.3)"
-      }}
-      whileTap={{ 
-        scale: disabled ? 1 : 0.95,
-        y: disabled ? 0 : 0
-      }}
-      transition={{ 
-        type: "spring", 
-        stiffness: 300, 
-        damping: 20 
-      }}
     >
       {buttonContent}
-    </motion.button>
+    </button>
   );
 }
 
@@ -153,13 +132,9 @@ export function FloatingActionButton({
   ...props
 }: ModernButtonProps) {
   return (
-    <motion.div
+    <div
       className="fixed bottom-6 right-6 z-50"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      drag
-      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      dragElastic={0.2}
+
     >
       <ModernGenZButton
         {...props}
@@ -168,7 +143,7 @@ export function FloatingActionButton({
       >
         {children}
       </ModernGenZButton>
-    </motion.div>
+    </div>
   );
 }
 
@@ -183,14 +158,11 @@ export function ButtonGroup({
   return (
     <div className={`flex space-x-3 ${className}`}>
       {React.Children.map(children, (child, index) => (
-        <motion.div
+        <div
           key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
         >
           {child}
-        </motion.div>
+        </div>
       ))}
     </div>
   );
@@ -209,31 +181,27 @@ export function IconButton({
   tooltip?: string;
 }) {
   return (
-    <motion.div className="relative group">
+    <div className="relative group">
       <ModernGenZButton
         {...props}
         variant={variant}
         size={size}
         className={`aspect-square ${className}`}
       >
-        <motion.div
-          whileHover={{ rotate: 360 }}
-          transition={{ duration: 0.3 }}
+        <div
         >
           {icon}
-        </motion.div>
+        </div>
       </ModernGenZButton>
       
       {tooltip && (
-        <motion.div
+        <div
           className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap"
-          initial={{ opacity: 0, y: 10 }}
-          whileHover={{ opacity: 1, y: 0 }}
         >
           {tooltip}
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800" />
-        </motion.div>
+        </div>
       )}
-    </motion.div>
+    </div>
   );
 }

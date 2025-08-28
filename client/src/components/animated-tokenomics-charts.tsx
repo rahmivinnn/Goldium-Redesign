@@ -16,7 +16,7 @@ export const AnimatedTokenomicsCharts: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
   const { balances } = useTokenAccounts();
 
   // Fetch real-time data

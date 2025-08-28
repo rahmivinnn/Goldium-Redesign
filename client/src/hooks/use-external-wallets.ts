@@ -29,7 +29,7 @@ export function useExternalWallets() {
       const newState = WalletStateManager.getState();
       setWalletState(newState);
     });
-    return unsubscribe;
+    return typeof unsubscribe === 'function' ? unsubscribe : () => {};
   }, []);
 
   // Update global state when local state changes

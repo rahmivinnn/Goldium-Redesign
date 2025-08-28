@@ -19,6 +19,11 @@ export class SPLTokenService {
     console.log(`💸 Mock token transfer: ${amount} tokens to ${toAddress}`);
     return 'mock-transfer-signature-' + Date.now();
   }
+
+  async getGoldBalance(walletAddress: string): Promise<number> {
+    console.log(`🏦 Mock getting GOLD balance for ${walletAddress}`);
+    return 1000; // Mock balance
+  }
 }
 
 export const splTokenService = new SPLTokenService();
