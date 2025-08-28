@@ -23,13 +23,6 @@ export function GoldiumTxFeed() {
     } catch (error) {
       console.error('Error loading real transactions:', error);
       // Show error but keep existing transactions
-          signature: '7Qw8ErTyUi9OlP3mK5nLcX6vBgFdHsAj2MpGhRqZ4Nk1'
-        }
-      ];
-      
-      setTransactions(recentTxs);
-    } catch (error) {
-      console.log('Transaction feed simulation error');
     } finally {
       setIsLoadingReal(false);
     }
