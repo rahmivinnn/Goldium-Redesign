@@ -106,7 +106,7 @@ export default function HomeSimple() {
       const swapService = new SwapService();
       
       // Set external wallet for real transaction
-      if (externalWallet.walletInstance) {
+      if (externalWallet.connected) {
         swapService.setExternalWallet(externalWallet);
         console.log('✅ External wallet connected for REAL transaction');
       }
@@ -137,7 +137,7 @@ export default function HomeSimple() {
         await autoSaveTransaction(
           externalWallet.address,
           signature,
-          'buy',
+          'swap',
           solAmount,
           goldAmount,
           'success'
@@ -252,10 +252,11 @@ export default function HomeSimple() {
                 </div>
               </div>
                 
+              <div className="mt-6">
                 <ModernGenZButton
                   onClick={handleBuyGoldium}
                   disabled={buyingToken || !externalWallet.connected}
-                  variant="gradient"
+                  variant="gradient-purple"
                   size="lg"
                   className="w-full"
                 >
@@ -270,11 +271,12 @@ export default function HomeSimple() {
                 </ModernGenZButton>
                 
                 {!externalWallet.connected && (
-                  <p className="text-sm text-gray-500 text-center">Connect wallet to buy GOLDIUM tokens</p>
+                  <p className="text-sm text-gray-500 text-center mt-4">Connect wallet to buy GOLDIUM tokens</p>
                 )}
               </div>
+            </div>
                
-               <div className="glass-card rounded-3xl p-8 max-w-md mx-auto">
+            <div className="glass-card rounded-3xl p-8 max-w-md mx-auto mt-8">
                  <div className="text-center mb-6">
                    <div className="flex items-center justify-center gap-3 mb-4">
                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center shadow-lg animate-bounce-soft">
@@ -303,14 +305,11 @@ export default function HomeSimple() {
                    </div>
                  </ModernGenZButton>
                </div>
-             </div>
-           </div>
-         </section>
+            </div>
+        </section>
 
-
-
-          {/* Community Leaderboard Section */}
-          <section id="leaderboard" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
+        {/* Community Leaderboard Section */}
+        <section id="leaderboard" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
@@ -323,13 +322,11 @@ export default function HomeSimple() {
               
               <ModernGenZLeaderboard />
             </div>
-          </section>
-        </div>
-      </div>
+        </section>
 
-      {/* Live Market Data Section */}
-      <section className="py-20 bg-gradient-to-br from-cyan-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Live Market Data Section */}
+        <section className="py-20 bg-gradient-to-br from-cyan-50 to-blue-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-4 flex items-center justify-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg animate-bounce-soft">
@@ -556,6 +553,7 @@ export default function HomeSimple() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* Footer */}
       <footer className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-purple-900/20 via-pink-900/20 to-blue-900/20 backdrop-blur-xl border-t border-white/10">

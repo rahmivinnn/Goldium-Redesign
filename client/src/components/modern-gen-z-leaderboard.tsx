@@ -7,7 +7,7 @@ import {
   Star, 
   TrendingUp, 
   Zap, 
-  Fire,
+  Flame as Fire,
   Heart,
   Users,
   Award,
