@@ -146,7 +146,7 @@ export default function HomeSimple() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-cyan-50 relative overflow-hidden">
+    <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Floating Background Orbs */}
       <div className="floating-orb floating-orb-1"></div>
       <div className="floating-orb floating-orb-2"></div>
@@ -175,39 +175,39 @@ export default function HomeSimple() {
       {/* Main Content Sections */}
       <div className="relative z-10">
         {/* DeFi Trading Section */}
-        <section id="defi" className="py-20 bg-white/50">
+        <section id="defi" className="py-20 bg-black/90">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+              <h2 className="text-4xl font-bold text-yellow-400 mb-4">
                 DeFi Trading Platform
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-yellow-300 max-w-3xl mx-auto">
                 Experience seamless trading with our modern, user-friendly interface
               </p>
             </div>
             
-            <div className="glass-card rounded-3xl p-8 max-w-4xl mx-auto">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-8 max-w-4xl mx-auto">
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-lg border-2 border-purple-300">
+                  <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-lg border-2 border-yellow-400">
                     <img 
                       src={goldiumLogo} 
                       alt="Goldium Logo" 
-                      className="w-full h-full object-contain bg-gradient-to-br from-purple-100 to-pink-100 p-2"
+                      className="w-full h-full object-contain bg-black p-2"
                     />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800">Buy GOLDIUM with SOL</h3>
+                  <h3 className="text-2xl font-bold text-yellow-400">Buy GOLDIUM with SOL</h3>
                 </div>
-                <div className="glass-card p-4 rounded-2xl inline-block">
-                  <p className="text-gray-700 font-medium">
-                    Exchange Rate: <span className="text-purple-600 font-bold">1 SOL = 21,486.893 GOLD</span>
+                <div className="bg-black/60 border border-yellow-400/50 p-4 rounded-2xl inline-block">
+                  <p className="text-yellow-300 font-medium">
+                    Exchange Rate: <span className="text-yellow-400 font-bold">1 SOL = 21,486.893 GOLD</span>
                   </p>
                 </div>
               </div>
               
               <div className="flex flex-col gap-6 items-center max-w-md mx-auto">
                 <div className="w-full">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">SOL Amount</label>
+                  <label className="block text-sm font-medium text-yellow-300 mb-2">SOL Amount</label>
                   <div className="relative">
                     <input
                       type="number"
@@ -216,15 +216,15 @@ export default function HomeSimple() {
                       placeholder="Enter SOL amount"
                       min="0.000047"
                       step="0.000047"
-                      className="glass-card border-2 border-purple-300 text-gray-800 px-4 py-3 rounded-2xl w-full focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition-all text-center font-semibold placeholder-gray-500"
+                      className="bg-black/60 border-2 border-yellow-400 text-yellow-400 px-4 py-3 rounded-2xl w-full focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all text-center font-semibold placeholder-yellow-600"
                       disabled={buyingToken}
                     />
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-600 font-bold text-sm">SOL</span>
+                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-400 font-bold text-sm">SOL</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-center gap-3 text-lg">
-                  <span className="text-purple-400">↓</span>
-                  <span className="text-purple-600 font-bold">
+                  <span className="text-yellow-400">↓</span>
+                  <span className="text-yellow-400 font-bold">
                     {buyAmount ? (parseFloat(buyAmount) * 21486.893).toLocaleString() : '0'} GOLD
                   </span>
                 </div>
@@ -248,23 +248,23 @@ export default function HomeSimple() {
               </ModernGenZButton>
               
               {!externalWallet.connected && (
-                <p className="text-sm text-gray-500 text-center">Connect wallet to buy GOLDIUM tokens</p>
+                <p className="text-sm text-yellow-300 text-center">Connect wallet to buy GOLDIUM tokens</p>
               )}
             </div>
             
-            <div className="glass-card rounded-3xl p-8 max-w-md mx-auto mt-8">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-8 max-w-md mx-auto mt-8">
               <div className="text-center mb-6">
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center shadow-lg animate-bounce-soft">
-                    <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <div className="w-12 h-12 rounded-2xl bg-yellow-400 flex items-center justify-center shadow-lg animate-bounce-soft">
+                    <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800">Join Our Community</h3>
+                  <h3 className="text-2xl font-bold text-yellow-400">Join Our Community</h3>
                 </div>
-                <div className="glass-card p-4 rounded-2xl">
-                  <p className="text-gray-700 font-medium">
-                    Stay updated with <span className="text-blue-600 font-bold">latest news and announcements</span>
+                <div className="bg-black/60 border border-yellow-400/50 p-4 rounded-2xl">
+                  <p className="text-yellow-300 font-medium">
+                    Stay updated with <span className="text-yellow-400 font-bold">latest news and announcements</span>
                   </p>
                 </div>
               </div>
@@ -287,13 +287,13 @@ export default function HomeSimple() {
         </section>
 
         {/* Community Leaderboard Section */}
-        <section id="leaderboard" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
+        <section id="leaderboard" className="py-20 bg-black/90">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              <h2 className="text-4xl font-bold text-yellow-400 mb-4">
                 Community Champions
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-yellow-300 max-w-3xl mx-auto">
                 Top performers in our vibrant GOLDIUM community
               </p>
             </div>
@@ -304,102 +304,102 @@ export default function HomeSimple() {
       </div>
 
       {/* Live Market Data Section */}
-      <section className="py-20 bg-gradient-to-br from-cyan-50 to-blue-50">
+      <section className="py-20 bg-black/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-4 flex items-center justify-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg animate-bounce-soft">
+            <h2 className="text-4xl font-bold text-yellow-400 mb-4 flex items-center justify-center gap-4">
+              <div className="w-12 h-12 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-lg animate-bounce-soft">
                 <div className="grid grid-cols-2 gap-1">
-                  <div className="w-2 h-2 bg-white rounded-sm"></div>
-                  <div className="w-2 h-3 bg-white rounded-sm"></div>
-                  <div className="w-2 h-1 bg-white rounded-sm"></div>
-                  <div className="w-2 h-4 bg-white rounded-sm"></div>
+                  <div className="w-2 h-2 bg-black rounded-sm"></div>
+                  <div className="w-2 h-3 bg-black rounded-sm"></div>
+                  <div className="w-2 h-1 bg-black rounded-sm"></div>
+                  <div className="w-2 h-4 bg-black rounded-sm"></div>
                 </div>
               </div>
               Live Market Data
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Real-time market statistics and performance metrics</p>
+            <p className="text-xl text-yellow-300 max-w-3xl mx-auto">Real-time market statistics and performance metrics</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="glass-card rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl overflow-hidden shadow-lg border-2 border-cyan-300 animate-bounce-soft">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl overflow-hidden shadow-lg border-2 border-yellow-400 animate-bounce-soft">
                 <img 
                   src={goldiumLogo} 
                   alt="Goldium Logo" 
-                  className="w-full h-full object-contain bg-gradient-to-br from-cyan-100 to-blue-100 p-2"
+                  className="w-full h-full object-contain bg-black p-2"
                 />
               </div>
-              <div className="text-cyan-600 font-bold text-lg mb-2">Current Price</div>
-              <div className="text-gray-800 text-2xl font-bold mb-2">
+              <div className="text-yellow-400 font-bold text-lg mb-2">Current Price</div>
+              <div className="text-yellow-300 text-2xl font-bold mb-2">
                 ${tokenData ? tokenData.price.toFixed(8) : '0.00004653'}
               </div>
-              <div className="bg-green-100 text-green-600 text-sm font-semibold px-3 py-1 rounded-full inline-block">+12.5% ↗</div>
+              <div className="bg-yellow-400/20 text-yellow-400 text-sm font-semibold px-3 py-1 rounded-full inline-block">+12.5% ↗</div>
             </div>
             
-            <div className="glass-card rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg animate-bounce-soft">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-yellow-400 flex items-center justify-center shadow-lg animate-bounce-soft">
+                <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd"/>
                 </svg>
               </div>
-              <div className="text-green-600 font-bold text-lg mb-2">Market Cap</div>
-              <div className="text-gray-800 text-2xl font-bold mb-2">
+              <div className="text-yellow-400 font-bold text-lg mb-2">Market Cap</div>
+              <div className="text-yellow-300 text-2xl font-bold mb-2">
                 ${tokenData ? tokenData.marketCap.toLocaleString() : '1,000,000'}
               </div>
-              <div className="bg-blue-100 text-blue-600 text-sm font-semibold px-3 py-1 rounded-full inline-block">+15.2% ↗</div>
+              <div className="bg-yellow-400/20 text-yellow-400 text-sm font-semibold px-3 py-1 rounded-full inline-block">+15.2% ↗</div>
             </div>
             
-            <div className="glass-card rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-lg animate-bounce-soft">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-yellow-400 flex items-center justify-center shadow-lg animate-bounce-soft">
+                <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"/>
                 </svg>
               </div>
-              <div className="text-purple-600 font-bold text-lg mb-2">24h Volume</div>
-              <div className="text-gray-800 text-2xl font-bold mb-2">
+              <div className="text-yellow-400 font-bold text-lg mb-2">24h Volume</div>
+              <div className="text-yellow-300 text-2xl font-bold mb-2">
                 ${tokenData ? tokenData.volume24h.toLocaleString() : '50,000'}
               </div>
-              <div className="bg-purple-100 text-purple-600 text-sm font-semibold px-3 py-1 rounded-full inline-block">+9.8% ↗</div>
+              <div className="bg-yellow-400/20 text-yellow-400 text-sm font-semibold px-3 py-1 rounded-full inline-block">+9.8% ↗</div>
             </div>
             
-            <div className="glass-card rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center shadow-lg animate-bounce-soft">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-6 text-center hover:scale-105 transition-all duration-300 animate-slide-up">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-yellow-400 flex items-center justify-center shadow-lg animate-bounce-soft">
+                <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
                   <path d="M6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
                 </svg>
               </div>
-              <div className="text-orange-600 font-bold text-lg mb-2">Holders</div>
-              <div className="text-gray-800 text-2xl font-bold mb-2">
+              <div className="text-yellow-400 font-bold text-lg mb-2">Holders</div>
+              <div className="text-yellow-300 text-2xl font-bold mb-2">
                 {tokenData ? tokenData.holders.toLocaleString() : '1,234'}
               </div>
-              <div className="bg-orange-100 text-orange-600 text-sm font-semibold px-3 py-1 rounded-full inline-block">+8.23% ↗</div>
+              <div className="bg-yellow-400/20 text-yellow-400 text-sm font-semibold px-3 py-1 rounded-full inline-block">+8.23% ↗</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* DeFi Features Section */}
-      <section id="features" className="py-20 bg-gradient-to-br from-green-50 to-teal-50">
+      <section id="features" className="py-20 bg-black/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-4xl font-bold text-yellow-400 mb-4">
               DeFi Platform Features
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-yellow-300 max-w-3xl mx-auto">
               Explore powerful DeFi tools designed for the modern trader
             </p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="glass-card rounded-3xl p-8 hover:scale-105 transition-all duration-300">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-8 hover:scale-105 transition-all duration-300">
               <Tabs defaultValue="swap" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 bg-white/70 rounded-2xl p-1">
-                  <TabsTrigger value="swap" className="rounded-xl font-semibold">Swap</TabsTrigger>
-                  <TabsTrigger value="stake" className="rounded-xl font-semibold">Stake</TabsTrigger>
-                  <TabsTrigger value="send" className="rounded-xl font-semibold">Send</TabsTrigger>
+                <TabsList className="grid w-full grid-cols-3 bg-black/60 border border-yellow-400/50 rounded-2xl p-1">
+                  <TabsTrigger value="swap" className="rounded-xl font-semibold text-yellow-400 data-[state=active]:bg-yellow-400 data-[state=active]:text-black">Swap</TabsTrigger>
+                  <TabsTrigger value="stake" className="rounded-xl font-semibold text-yellow-400 data-[state=active]:bg-yellow-400 data-[state=active]:text-black">Stake</TabsTrigger>
+                  <TabsTrigger value="send" className="rounded-xl font-semibold text-yellow-400 data-[state=active]:bg-yellow-400 data-[state=active]:text-black">Send</TabsTrigger>
                 </TabsList>
                 <TabsContent value="swap" className="mt-6">
                   <FixedSwapTab />
@@ -413,10 +413,10 @@ export default function HomeSimple() {
               </Tabs>
             </div>
             
-            <div className="glass-card rounded-3xl p-8 hover:scale-105 transition-all duration-300">
+            <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-8 hover:scale-105 transition-all duration-300">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">Transaction History</h3>
-                <p className="text-gray-600">Track your GOLDIUM transactions</p>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-2">Transaction History</h3>
+                <p className="text-yellow-300">Track your GOLDIUM transactions</p>
               </div>
               <TransactionHistory />
             </div>
@@ -425,31 +425,31 @@ export default function HomeSimple() {
       </section>
 
       {/* Tokenomics Section */}
-      <section className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <section className="py-20 bg-black/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-4xl font-bold text-yellow-400 mb-4">
               GOLDIUM Tokenomics
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-yellow-300 max-w-3xl mx-auto">
               Sustainable token distribution for long-term growth
             </p>
           </div>
           
-          <div className="glass-card rounded-3xl p-8 max-w-4xl mx-auto">
+          <div className="bg-black/80 border border-yellow-400/30 rounded-3xl p-8 max-w-4xl mx-auto">
             <AnimatedTokenomicsCharts />
           </div>
         </div>
       </section>
 
       {/* Twitter Feed Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-cyan-50">
+      <section className="py-20 bg-black/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-4xl font-bold text-yellow-400 mb-4">
               Latest Updates
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-yellow-300 max-w-3xl mx-auto">
               Stay connected with our community
             </p>
           </div>
@@ -459,20 +459,20 @@ export default function HomeSimple() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-purple-900 to-pink-900 text-white py-16">
+      <footer className="bg-black border-t border-yellow-400/30 text-yellow-400 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-lg border-2 border-white/30">
+              <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-lg border-2 border-yellow-400">
                 <img 
                   src={goldiumLogo} 
                   alt="Goldium Logo" 
-                  className="w-full h-full object-contain bg-gradient-to-br from-purple-100 to-pink-100 p-2"
+                  className="w-full h-full object-contain bg-black p-2"
                 />
               </div>
-              <h3 className="text-2xl font-bold">GOLDIUM</h3>
+              <h3 className="text-2xl font-bold text-yellow-400">GOLDIUM</h3>
             </div>
-            <div className="text-xs sm:text-sm text-gray-400 text-center">
+            <div className="text-xs sm:text-sm text-yellow-300 text-center">
               © 2025 Goldium. All rights reserved.
             </div>
           </div>
