@@ -14,7 +14,8 @@
     "deploy": "node auto-deploy-vercel.js",
     "deploy:auto": "npm run build && vercel --prod --yes",
     "build:vercel": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-build": "vite build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
