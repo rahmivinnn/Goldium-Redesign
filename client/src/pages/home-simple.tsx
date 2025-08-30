@@ -21,9 +21,12 @@ import { PortfolioAnalytics } from '@/components/portfolio-analytics';
 import { DAOGovernance } from '@/components/dao-governance';
 import { NFTMarketplace } from '@/components/nft-marketplace';
 import { AdvancedStakingTiers } from '@/components/advanced-staking-tiers';
+import { ParticleSystem, FloatingElements } from '@/components/particle-system';
+import { Enhanced3DCard, GlowingButton, NeonText } from '@/components/enhanced-3d-cards';
+import { CyberpunkHUD } from '@/components/cyberpunk-hud';
 
 import { RealTimeNotifications } from '@/components/real-time-notifications';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Zap } from 'lucide-react';
 import { AnimatedTokenomicsCharts } from '@/components/animated-tokenomics-charts';
 import { realTimeDataService, RealTimeTokenData } from '@/services/real-time-data-service';
 import { useExternalWallets } from '@/hooks/use-external-wallets';
@@ -181,31 +184,48 @@ export default function HomeSimple() {
       background: '#0a0a0a',
       position: 'relative'
     }}>
-      {/* Cyberpunk Grid Background */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `
-          linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '50px 50px'
-      }} />
+      {/* Advanced Particle System */}
+      <ParticleSystem 
+        particleCount={150} 
+        colors={['#00ff41', '#00d4ff', '#ff0080', '#ffff00', '#8000ff']}
+        speed={2}
+      />
       
-      {/* Matrix Rain Background */}
+      {/* Floating Elements */}
+      <FloatingElements />
+      
+      {/* Cyberpunk HUD */}
+      <CyberpunkHUD />
+      
+      {/* Enhanced Matrix Rain Background */}
       <div className="matrix-rain-container">
-        {Array.from({length: 15}).map((_, i) => (
+        {Array.from({length: 30}).map((_, i) => (
           <div 
             key={i}
             className="matrix-char"
             style={{
               left: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${8 + Math.random() * 4}s`
+              animationDuration: `${6 + Math.random() * 6}s`,
+              fontSize: `${12 + Math.random() * 8}px`,
+              color: ['#00ff41', '#00d4ff', '#ff0080'][Math.floor(Math.random() * 3)],
+              textShadow: `0 0 10px currentColor`
             }}
           >
-            {String.fromCharCode(0x30A0 + Math.random() * 96)}
+            {['0', '1', '01', '10', '101', '010', '001', '110'][Math.floor(Math.random() * 8)]}
           </div>
         ))}
       </div>
+      
+      {/* Cyberpunk Grid Background with Animation */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: `
+          linear-gradient(rgba(0, 255, 65, 0.2) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 65, 0.2) 1px, transparent 1px)
+        `,
+        backgroundSize: '50px 50px',
+        animation: 'gridPulse 4s ease-in-out infinite'
+      }} />
       
       {/* Floating Particles */}
       <div className="particle particle-1"></div>
@@ -281,22 +301,25 @@ export default function HomeSimple() {
               </div>
                 
               <div className="mt-6">
-                <ModernGenZButton
+                <GlowingButton
                   onClick={handleBuyGoldium}
-                  disabled={buyingToken || !externalWallet.connected}
-                  variant="gradient-purple"
+                  variant="primary"
                   size="lg"
+                  disabled={buyingToken || !externalWallet.connected}
                   className="w-full"
                 >
                   {buyingToken ? (
                     <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Buying GOLDIUM...
+                      <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                      <NeonText size="sm" color="#000000">Buying GOLDIUM...</NeonText>
                     </div>
                   ) : (
-                    'Buy GOLDIUM with SOL'
+                    <div className="flex items-center gap-2">
+                      <Zap className="w-5 h-5" />
+                      <NeonText size="sm" color="#000000">Buy GOLDIUM with SOL</NeonText>
+                    </div>
                   )}
-                </ModernGenZButton>
+                </GlowingButton>
                 
                 {!externalWallet.connected && (
                   <p className="text-sm text-gray-500 text-center mt-4">Connect wallet to buy GOLDIUM tokens</p>
@@ -438,7 +461,7 @@ export default function HomeSimple() {
             </p>
           </div>
           
-          <div className="glass-card rounded-3xl p-8">
+          <Enhanced3DCard glowColor="#00ff41" intensity={1.5} className="p-8">
             <Tabs defaultValue="swap" className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-8 glass-navbar rounded-2xl p-2">
                 <TabsTrigger value="swap" className="powerful-tab rounded-xl font-semibold transition-all hover:scale-105" style={{
@@ -488,14 +511,16 @@ export default function HomeSimple() {
                 <FixedSendTab />
               </TabsContent>
             </Tabs>
-          </div>
+          </Enhanced3DCard>
         </div>
       </section>
 
       {/* SOL-GOLD Trading Analytics Section */}
       <section id="analytics" className="py-20 px-6" style={{background: '#0a0a0a'}}>
         <div className="max-w-7xl mx-auto">
-          <AdvancedTradingChart />
+          <Enhanced3DCard glowColor="#00d4ff" intensity={2}>
+            <AdvancedTradingChart />
+          </Enhanced3DCard>
         </div>
       </section>
 
