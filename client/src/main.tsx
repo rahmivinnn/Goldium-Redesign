@@ -7,7 +7,8 @@ import "./chainzoku-styles.css";
 // Global Buffer polyfill for browser compatibility with Solana libraries
 (window as any).Buffer = Buffer;
 
-console.log('🚀 Goldium App Starting...');
+console.log('🚀 Goldium Advanced DeFi App Starting...');
+console.log('✨ Version 1.0.1 - Enhanced Cyberpunk Experience!');
 
 // Error boundary component
 import React from 'react';
