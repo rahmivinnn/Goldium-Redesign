@@ -1,0 +1,10 @@
+{
+  "name": "goldium-client",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "cd .. && npm run build:vercel"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
