@@ -49,8 +49,15 @@ export default defineConfig({
   build: {
     outDir: path.resolve(path.dirname(fileURLToPath(import.meta.url)), "dist"),
     emptyOutDir: true,
+    sourcemap: false,
     rollupOptions: {
       external: [],
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          solana: ['@solana/web3.js', '@solana/wallet-adapter-base', '@solana/wallet-adapter-react'],
+        }
+      }
     },
   },
   server: {

@@ -12,7 +12,9 @@
     "db:migrate": "tsx server/migrate.ts",
     "db:setup": "npm run db:migrate",
     "deploy": "node auto-deploy-vercel.js",
-    "deploy:auto": "npm run build && vercel --prod --yes"
+    "deploy:auto": "npm run build && vercel --prod --yes",
+    "build:vercel": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
