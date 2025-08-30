@@ -15,6 +15,12 @@ import { ModernGenZNavbar } from '@/components/modern-gen-z-navbar';
 import { ModernGenZHero } from '@/components/modern-gen-z-hero';
 import { ModernGenZLeaderboard } from '@/components/modern-gen-z-leaderboard';
 import { ModernGenZButton } from '@/components/modern-gen-z-button';
+import { AdvancedTradingChart } from '@/components/advanced-trading-chart';
+import { YieldFarmingPools } from '@/components/yield-farming-pools';
+import { PortfolioAnalytics } from '@/components/portfolio-analytics';
+import { DAOGovernance } from '@/components/dao-governance';
+import { NFTMarketplace } from '@/components/nft-marketplace';
+import { AdvancedStakingTiers } from '@/components/advanced-staking-tiers';
 
 import { RealTimeNotifications } from '@/components/real-time-notifications';
 import { ExternalLink } from 'lucide-react';
@@ -441,8 +447,12 @@ export default function HomeSimple() {
                 <TabsTrigger value="stake" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-400 data-[state=active]:to-cyan-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
                   💎 Stake
                 </TabsTrigger>
-                <TabsTrigger value="dragon" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-400 data-[state=active]:to-emerald-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
-                  🐉 Dragon
+                <TabsTrigger value="trading" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-400 data-[state=active]:to-emerald-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105" style={{
+                  fontFamily: 'Orbitron, monospace',
+                  textTransform: 'uppercase',
+                  fontSize: '0.8rem'
+                }}>
+                  📈 Trading
                 </TabsTrigger>
                 <TabsTrigger value="send" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-400 data-[state=active]:to-red-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
                   📤 Send
@@ -453,8 +463,12 @@ export default function HomeSimple() {
                 <TabsTrigger value="tracker" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-teal-400 data-[state=active]:to-blue-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
                   🔍 Tracker
                 </TabsTrigger>
-                <TabsTrigger value="demo" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-400 data-[state=active]:to-rose-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
-                  🎭 Demo
+                <TabsTrigger value="governance" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-400 data-[state=active]:to-rose-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105" style={{
+                  fontFamily: 'Orbitron, monospace',
+                  textTransform: 'uppercase',
+                  fontSize: '0.8rem'
+                }}>
+                  🏛️ DAO
                 </TabsTrigger>
               </TabsList>
               
@@ -463,11 +477,11 @@ export default function HomeSimple() {
               </TabsContent>
               
               <TabsContent value="stake">
-                <FixedStakingTab />
+                <AdvancedStakingTiers />
               </TabsContent>
               
-              <TabsContent value="dragon">
-                <GoldiumGamifiedStaking />
+              <TabsContent value="trading">
+                <AdvancedTradingChart />
               </TabsContent>
               
               <TabsContent value="send">
@@ -482,11 +496,32 @@ export default function HomeSimple() {
                 <GoldiumTransactionTracker />
               </TabsContent>
               
-              <TabsContent value="demo">
-                <AnimationDemo />
+              <TabsContent value="governance">
+                <DAOGovernance />
               </TabsContent>
             </Tabs>
           </div>
+        </div>
+      </section>
+
+      {/* Yield Farming Section */}
+      <section id="farming" className="py-20 px-6" style={{background: '#0a0a0a'}}>
+        <div className="max-w-7xl mx-auto">
+          <YieldFarmingPools />
+        </div>
+      </section>
+
+      {/* Portfolio Analytics Section */}
+      <section id="portfolio" className="py-20 px-6" style={{background: '#0a0a0a'}}>
+        <div className="max-w-7xl mx-auto">
+          <PortfolioAnalytics />
+        </div>
+      </section>
+
+      {/* NFT Marketplace Section */}
+      <section id="nft" className="py-20 px-6" style={{background: '#0a0a0a'}}>
+        <div className="max-w-7xl mx-auto">
+          <NFTMarketplace />
         </div>
       </section>
 

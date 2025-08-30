@@ -3,9 +3,10 @@ import { Menu, X, Sparkles } from 'lucide-react';
 
 const navigationItems = [
   { name: 'Trade', href: '#trade', active: true },
-  { name: 'Pool', href: '#pool' },
-  { name: 'Stake', href: '#stake' },
+  { name: 'Farm', href: '#farming' },
+  { name: 'Portfolio', href: '#portfolio' },
   { name: 'NFT', href: '#nft' },
+  { name: 'DAO', href: '#governance' },
   { name: 'Leaderboard', href: '#leaderboard' },
 ];
 
