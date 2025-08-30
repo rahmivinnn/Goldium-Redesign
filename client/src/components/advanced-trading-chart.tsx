@@ -17,28 +17,28 @@ interface OrderBookEntry {
 }
 
 export const AdvancedTradingChart: React.FC = () => {
-  const [currentPrice, setCurrentPrice] = useState(2147.83);
+  const [currentPrice, setCurrentPrice] = useState(21486.893); // SOL to GOLD rate
   const [priceChange, setPriceChange] = useState(+12.45);
   const [priceChangePercent, setPriceChangePercent] = useState(+0.58);
   const [chartType, setChartType] = useState<'candlestick' | 'line' | 'area'>('candlestick');
   const [timeframe, setTimeframe] = useState<'1m' | '5m' | '15m' | '1h' | '4h' | '1d'>('15m');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
-  // Mock order book data
+  // SOL-GOLD order book data
   const [buyOrders] = useState<OrderBookEntry[]>([
-    { price: 2147.50, amount: 1.25, total: 2684.38 },
-    { price: 2147.25, amount: 2.10, total: 4509.23 },
-    { price: 2147.00, amount: 0.85, total: 1824.95 },
-    { price: 2146.75, amount: 3.20, total: 6869.60 },
-    { price: 2146.50, amount: 1.90, total: 4078.35 },
+    { price: 21487.50, amount: 1.25, total: 26859.38 },
+    { price: 21487.25, amount: 2.10, total: 45123.23 },
+    { price: 21487.00, amount: 0.85, total: 18263.95 },
+    { price: 21486.75, amount: 3.20, total: 68757.60 },
+    { price: 21486.50, amount: 1.90, total: 40824.35 },
   ]);
   
   const [sellOrders] = useState<OrderBookEntry[]>([
-    { price: 2148.00, amount: 0.95, total: 2040.60 },
-    { price: 2148.25, amount: 1.75, total: 3759.44 },
-    { price: 2148.50, amount: 2.30, total: 4941.55 },
-    { price: 2148.75, amount: 1.15, total: 2471.06 },
-    { price: 2149.00, amount: 0.80, total: 1719.20 },
+    { price: 21488.00, amount: 0.95, total: 20413.60 },
+    { price: 21488.25, amount: 1.75, total: 37604.44 },
+    { price: 21488.50, amount: 2.30, total: 49423.55 },
+    { price: 21488.75, amount: 1.15, total: 24712.06 },
+    { price: 21489.00, amount: 0.80, total: 17191.20 },
   ]);
 
   // Simulate real-time price updates
@@ -151,7 +151,7 @@ export const AdvancedTradingChart: React.FC = () => {
             textTransform: 'uppercase',
             letterSpacing: '0.05em'
           }}>
-            GOLD/USD
+            SOL/GOLD
           </h2>
           
           <div className="flex items-center space-x-2">
@@ -160,7 +160,7 @@ export const AdvancedTradingChart: React.FC = () => {
               color: '#00ff41',
               textShadow: '0 0 10px rgba(0, 255, 65, 0.5)'
             }}>
-              ${currentPrice.toFixed(2)}
+              {currentPrice.toFixed(0)} GOLD
             </span>
             
             <div className={`flex items-center space-x-1 px-2 py-1 rounded ${
@@ -280,18 +280,18 @@ export const AdvancedTradingChart: React.FC = () => {
               fontFamily: 'JetBrains Mono, monospace',
               textTransform: 'uppercase'
             }}>
-              <div>PRICE (USD)</div>
-              <div>AMOUNT (GOLD)</div>
-              <div>TOTAL (USD)</div>
+              <div>PRICE (GOLD)</div>
+              <div>AMOUNT (SOL)</div>
+              <div>TOTAL (GOLD)</div>
             </div>
             
             {buyOrders.map((order, index) => (
               <div key={index} className="grid grid-cols-3 gap-4 text-sm hover:bg-green-500/10 p-2 rounded transition-colors" style={{
                 fontFamily: 'JetBrains Mono, monospace'
               }}>
-                <div className="text-green-400">${order.price.toFixed(2)}</div>
+                <div className="text-green-400">{order.price.toFixed(0)}</div>
                 <div className="text-white">{order.amount.toFixed(2)}</div>
-                <div className="text-gray-300">${order.total.toFixed(2)}</div>
+                <div className="text-gray-300">{order.total.toFixed(0)}</div>
               </div>
             ))}
           </div>
@@ -315,31 +315,31 @@ export const AdvancedTradingChart: React.FC = () => {
               fontFamily: 'JetBrains Mono, monospace',
               textTransform: 'uppercase'
             }}>
-              <div>PRICE (USD)</div>
-              <div>AMOUNT (GOLD)</div>
-              <div>TOTAL (USD)</div>
+              <div>PRICE (GOLD)</div>
+              <div>AMOUNT (SOL)</div>
+              <div>TOTAL (GOLD)</div>
             </div>
             
             {sellOrders.map((order, index) => (
               <div key={index} className="grid grid-cols-3 gap-4 text-sm hover:bg-pink-500/10 p-2 rounded transition-colors" style={{
                 fontFamily: 'JetBrains Mono, monospace'
               }}>
-                <div className="text-pink-400">${order.price.toFixed(2)}</div>
+                <div className="text-pink-400">{order.price.toFixed(0)}</div>
                 <div className="text-white">{order.amount.toFixed(2)}</div>
-                <div className="text-gray-300">${order.total.toFixed(2)}</div>
+                <div className="text-gray-300">{order.total.toFixed(0)}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Trading Stats */}
+      {/* SOL-GOLD Trading Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
         {[
-          { label: '24h High', value: '$2,189.45', color: '#00ff41' },
-          { label: '24h Low', value: '$2,098.32', color: '#ff0080' },
-          { label: '24h Volume', value: '1,247 GOLD', color: '#00d4ff' },
-          { label: 'Circulating', value: '850K GOLD', color: '#8000ff' }
+          { label: '24h High', value: '21,892 GOLD', color: '#00ff41' },
+          { label: '24h Low', value: '21,098 GOLD', color: '#ff0080' },
+          { label: '24h Volume', value: '1,247 SOL', color: '#00d4ff' },
+          { label: 'SOL Liquidity', value: '8,500 SOL', color: '#8000ff' }
         ].map((stat, index) => (
           <div key={index} className="cyber-card p-3 text-center" style={{
             background: 'rgba(21, 21, 21, 0.95)',

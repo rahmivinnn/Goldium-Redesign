@@ -440,35 +440,39 @@ export default function HomeSimple() {
           
           <div className="glass-card rounded-3xl p-8">
             <Tabs defaultValue="swap" className="w-full">
-              <TabsList className="grid w-full grid-cols-7 mb-8 glass-navbar rounded-2xl p-2">
-                <TabsTrigger value="swap" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-400 data-[state=active]:to-pink-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
-                  🔄 Swap
-                </TabsTrigger>
-                <TabsTrigger value="stake" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-400 data-[state=active]:to-cyan-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
-                  💎 Stake
-                </TabsTrigger>
-                <TabsTrigger value="trading" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-400 data-[state=active]:to-emerald-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105" style={{
+              <TabsList className="grid w-full grid-cols-3 mb-8 glass-navbar rounded-2xl p-2">
+                <TabsTrigger value="swap" className="powerful-tab rounded-xl font-semibold transition-all hover:scale-105" style={{
+                  background: 'transparent',
+                  border: '2px solid #00ff41',
+                  color: '#00ff41',
                   fontFamily: 'Orbitron, monospace',
                   textTransform: 'uppercase',
-                  fontSize: '0.8rem'
+                  fontSize: '0.9rem',
+                  letterSpacing: '0.05em'
                 }}>
-                  📈 Trading
+                  💱 SOL ↔ GOLD
                 </TabsTrigger>
-                <TabsTrigger value="send" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-400 data-[state=active]:to-red-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
-                  📤 Send
-                </TabsTrigger>
-                <TabsTrigger value="history" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-400 data-[state=active]:to-purple-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
-                  📊 History
-                </TabsTrigger>
-                <TabsTrigger value="tracker" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-teal-400 data-[state=active]:to-blue-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105">
-                  🔍 Tracker
-                </TabsTrigger>
-                <TabsTrigger value="governance" className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-400 data-[state=active]:to-rose-500 data-[state=active]:text-white font-semibold transition-all hover:scale-105" style={{
+                <TabsTrigger value="stake" className="powerful-tab rounded-xl font-semibold transition-all hover:scale-105" style={{
+                  background: 'transparent',
+                  border: '2px solid #00d4ff',
+                  color: '#00d4ff',
                   fontFamily: 'Orbitron, monospace',
                   textTransform: 'uppercase',
-                  fontSize: '0.8rem'
+                  fontSize: '0.9rem',
+                  letterSpacing: '0.05em'
                 }}>
-                  🏛️ DAO
+                  🔒 STAKE GOLD
+                </TabsTrigger>
+                <TabsTrigger value="send" className="powerful-tab rounded-xl font-semibold transition-all hover:scale-105" style={{
+                  background: 'transparent',
+                  border: '2px solid #ff0080',
+                  color: '#ff0080',
+                  fontFamily: 'Orbitron, monospace',
+                  textTransform: 'uppercase',
+                  fontSize: '0.9rem',
+                  letterSpacing: '0.05em'
+                }}>
+                  📤 SEND
                 </TabsTrigger>
               </TabsList>
               
@@ -480,48 +484,18 @@ export default function HomeSimple() {
                 <AdvancedStakingTiers />
               </TabsContent>
               
-              <TabsContent value="trading">
-                <AdvancedTradingChart />
-              </TabsContent>
-              
               <TabsContent value="send">
                 <FixedSendTab />
-              </TabsContent>
-              
-              <TabsContent value="history">
-                <TransactionHistory />
-              </TabsContent>
-              
-              <TabsContent value="tracker">
-                <GoldiumTransactionTracker />
-              </TabsContent>
-              
-              <TabsContent value="governance">
-                <DAOGovernance />
               </TabsContent>
             </Tabs>
           </div>
         </div>
       </section>
 
-      {/* Yield Farming Section */}
-      <section id="farming" className="py-20 px-6" style={{background: '#0a0a0a'}}>
+      {/* SOL-GOLD Trading Analytics Section */}
+      <section id="analytics" className="py-20 px-6" style={{background: '#0a0a0a'}}>
         <div className="max-w-7xl mx-auto">
-          <YieldFarmingPools />
-        </div>
-      </section>
-
-      {/* Portfolio Analytics Section */}
-      <section id="portfolio" className="py-20 px-6" style={{background: '#0a0a0a'}}>
-        <div className="max-w-7xl mx-auto">
-          <PortfolioAnalytics />
-        </div>
-      </section>
-
-      {/* NFT Marketplace Section */}
-      <section id="nft" className="py-20 px-6" style={{background: '#0a0a0a'}}>
-        <div className="max-w-7xl mx-auto">
-          <NFTMarketplace />
+          <AdvancedTradingChart />
         </div>
       </section>
 

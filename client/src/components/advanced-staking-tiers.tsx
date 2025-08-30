@@ -139,7 +139,7 @@ export const AdvancedStakingTiers: React.FC = () => {
           letterSpacing: '0.05em',
           textShadow: '0 0 20px rgba(0, 255, 65, 0.5)'
         }}>
-          🏰 Advanced Staking
+          🔒 GOLD STAKING TIERS
         </h2>
 
         {/* Current Status */}

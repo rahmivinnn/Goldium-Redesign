@@ -220,12 +220,12 @@ export const ModernGenZHero: React.FC = () => {
           </button>
         </div>
 
-        {/* Feature Grid - Chainzoku Style */}
+        {/* SOL-GOLD DeFi Stats - Chainzoku Style */}
         <div className="cyber-grid grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
           {[
-            { title: "24h Volume", value: "$2.4M", subtitle: "↗ +15.3%" },
-            { title: "Total Locked", value: "$12.8M", subtitle: "🔒 Secured" },
-            { title: "Users", value: "50K+", subtitle: "🌟 Active" },
+            { title: "SOL-GOLD Rate", value: "21,487", subtitle: "GOLD per SOL" },
+            { title: "Total Staked", value: "1.2M GOLD", subtitle: "🔒 Earning Rewards" },
+            { title: "Active Traders", value: "50K+", subtitle: "🌟 Trading SOL-GOLD" },
           ].map((stat, index) => (
             <div
               key={stat.title}
@@ -283,31 +283,31 @@ export const ModernGenZHero: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <FeatureCard
               icon={<Zap className="w-6 h-6 text-white" />}
-              title="Lightning Fast"
-              description="Execute trades in milliseconds with our optimized infrastructure"
+              title="SOL ↔ GOLD Swap"
+              description="Instant swapping between SOL and GOLD tokens with optimal rates"
               gradient="bg-gradient-to-br from-yellow-400 to-orange-500"
               delay={0}
             />
             
             <FeatureCard
               icon={<Shield className="w-6 h-6 text-white" />}
-              title="Bank-Grade Security"
-              description="Your funds are protected by military-grade encryption"
+              title="GOLD Staking"
+              description="Stake your GOLD tokens and earn up to 35% APY with tier rewards"
               gradient="bg-gradient-to-br from-green-400 to-blue-500"
               delay={0.2}
             />
             
             <FeatureCard
               icon={<Target className="w-6 h-6 text-white" />}
-              title="Smart Trading"
-              description="AI-powered insights to maximize your trading potential"
+              title="Secure Transfers"
+              description="Send SOL or GOLD tokens securely to any Solana wallet address"
               gradient="bg-gradient-to-br from-purple-400 to-pink-500"
               delay={0.4}
             />
           </div>
         </div>
         
-        {/* Additional Feature Cards - Chainzoku Style */}
+        {/* SOL-GOLD DeFi Features - Chainzoku Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
           <div className="cyber-card p-6" style={{
             background: 'rgba(21, 21, 21, 0.95)',
@@ -322,12 +322,12 @@ export const ModernGenZHero: React.FC = () => {
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               textShadow: '0 0 5px rgba(255, 0, 128, 0.5)'
-            }}>🎮 Gamified Experience</h3>
+            }}>💱 Real-time Trading</h3>
             <p style={{
               color: '#cccccc',
               fontFamily: 'Rajdhani, monospace'
             }}>
-              Earn XP, unlock achievements, and compete with friends in our gamified DeFi ecosystem.
+              Live SOL-GOLD trading with real-time charts, order books, and market analytics for optimal trading decisions.
             </p>
           </div>
           
@@ -344,12 +344,12 @@ export const ModernGenZHero: React.FC = () => {
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               textShadow: '0 0 5px rgba(0, 212, 255, 0.5)'
-            }}>🌍 Global Community</h3>
+            }}>🔒 Multi-tier Staking</h3>
             <p style={{
               color: '#cccccc',
               fontFamily: 'Rajdhani, monospace'
             }}>
-              Join thousands of traders worldwide in building the future of decentralized finance.
+              Stake GOLD tokens in 4 different tiers with APY up to 35% and unlock exclusive benefits and rewards.
             </p>
           </div>
         </div>
