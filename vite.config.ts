@@ -8,9 +8,9 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 export default defineConfig({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
+    ...(process.env.NODE_ENV !== "production" ? [runtimeErrorOverlay()] : []),
     nodePolyfills({
-      include: ['crypto', 'stream', 'util', 'buffer'],
+      include: ['buffer'],
       globals: {
         Buffer: true,
         global: true,
@@ -46,6 +46,7 @@ export default defineConfig({
     ]
   },
   root: path.resolve(path.dirname(fileURLToPath(import.meta.url)), "client"),
+  publicDir: "public",
   build: {
     outDir: path.resolve(path.dirname(fileURLToPath(import.meta.url)), "dist"),
     emptyOutDir: true,
