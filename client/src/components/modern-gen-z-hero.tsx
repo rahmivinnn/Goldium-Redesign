@@ -30,14 +30,36 @@ const FeatureCard: React.FC<{
   delay: number;
 }> = ({ icon, title, description, gradient, delay }) => {
   return (
-    <div className="glass-card p-6 rounded-3xl hover-lift group cursor-pointer">
+    <div className="cyber-card p-6 cyber-hover group cursor-pointer" style={{
+      background: 'rgba(21, 21, 21, 0.95)',
+      border: '1px solid #333333',
+      borderRadius: '8px',
+      backdropFilter: 'blur(10px)',
+      transition: 'all 0.3s ease'
+    }}>
       <div
-        className={`w-12 h-12 ${gradient} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+        className="w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+        style={{
+          background: 'linear-gradient(135deg, #00ff41 0%, #00d4ff 100%)',
+          border: '2px solid #00ff41',
+          borderRadius: '4px',
+          boxShadow: '0 0 10px rgba(0, 255, 65, 0.3)'
+        }}
       >
-        {icon}
+        {React.cloneElement(icon as React.ReactElement, { 
+          style: { color: '#0a0a0a' }
+        })}
       </div>
-      <h3 className="text-lg font-bold text-gray-800 mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+      <h3 className="text-lg font-bold mb-2" style={{
+        color: '#ffffff',
+        fontFamily: 'Orbitron, monospace',
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em'
+      }}>{title}</h3>
+      <p className="text-sm leading-relaxed" style={{
+        color: '#cccccc',
+        fontFamily: 'Rajdhani, monospace'
+      }}>{description}</p>
     </div>
   );
 };
@@ -75,54 +97,131 @@ const ParallaxBackground: React.FC = () => {
 
 export const ModernGenZHero: React.FC = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-cyan-50 flex items-center justify-center overflow-hidden py-20">
+    <section className="chainzoku-hero relative min-h-screen flex items-center justify-center overflow-hidden py-20" style={{
+      background: '#0a0a0a',
+      position: 'relative'
+    }}>
+      {/* Cyberpunk Grid Background */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: `
+          linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '50px 50px'
+      }} />
+      
+      {/* Matrix Rain Effect */}
+      <div className="matrix-rain-container">
+        {Array.from({length: 20}).map((_, i) => (
+          <div 
+            key={i}
+            className="matrix-char"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${8 + Math.random() * 4}s`
+            }}
+          >
+            {String.fromCharCode(0x30A0 + Math.random() * 96)}
+          </div>
+        ))}
+      </div>
+      
       {/* Parallax Background */}
       <ParallaxBackground />
       
       {/* Main Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full px-4 py-2 mb-8">
-          <Sparkles className="w-4 h-4 text-purple-600" />
-          <span className="text-sm font-medium text-purple-700">
+        {/* Badge - Chainzoku Style */}
+        <div className="cyber-badge inline-flex items-center space-x-2 px-4 py-2 mb-8" style={{
+          background: 'transparent',
+          border: '1px solid #00ff41',
+          borderRadius: '4px',
+          color: '#00ff41',
+          fontFamily: 'JetBrains Mono, monospace',
+          fontSize: '0.75rem',
+          fontWeight: '600',
+          textTransform: 'uppercase',
+          letterSpacing: '0.1em'
+        }}>
+          <Sparkles className="w-4 h-4" style={{color: '#00ff41'}} />
+          <span>
             Next-Gen DeFi Platform ✨
           </span>
         </div>
 
-        {/* Main Heading */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 bg-clip-text text-transparent">
+        {/* Main Heading - Chainzoku Style */}
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight" style={{
+          fontFamily: 'Orbitron, monospace',
+          fontWeight: '900',
+          textTransform: 'uppercase',
+          letterSpacing: '0.05em'
+        }}>
+          <span style={{
+            background: 'linear-gradient(135deg, #00ff41 0%, #00d4ff 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textShadow: '0 0 20px rgba(0, 255, 65, 0.5)'
+          }}>
             Welcome to
           </span>
           <br />
-          <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+          <span style={{
+            background: 'linear-gradient(135deg, #ffff00 0%, #ff4000 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textShadow: '0 0 20px rgba(255, 255, 0, 0.5)'
+          }}>
             Goldium
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+        {/* Subtitle - Chainzoku Style */}
+        <p className="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed" style={{
+          color: '#cccccc',
+          fontFamily: 'Rajdhani, monospace',
+          fontWeight: '400'
+        }}>
           Experience the future of DeFi with our{" "}
-          <span className="font-semibold text-purple-600">playful</span>,{" "}
-          <span className="font-semibold text-pink-600">secure</span>, and{" "}
-          <span className="font-semibold text-cyan-600">community-driven</span>{" "}
+          <span className="font-semibold" style={{color: '#00ff41', textShadow: '0 0 5px rgba(0, 255, 65, 0.5)'}}>playful</span>,{" "}
+          <span className="font-semibold" style={{color: '#00d4ff', textShadow: '0 0 5px rgba(0, 212, 255, 0.5)'}}>secure</span>, and{" "}
+          <span className="font-semibold" style={{color: '#ff0080', textShadow: '0 0 5px rgba(255, 0, 128, 0.5)'}}>community-driven</span>{" "}
           platform 🚀
         </p>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - Chainzoku Style */}
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-          <button className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg flex items-center justify-center space-x-2 hover:shadow-lg transition-shadow duration-300">
+          <button className="cyber-button-primary px-8 py-4 font-semibold text-lg flex items-center justify-center space-x-2 transition-all duration-300 relative overflow-hidden" style={{
+            background: 'linear-gradient(135deg, #00ff41 0%, #00d4ff 100%)',
+            border: '2px solid #00ff41',
+            color: '#0a0a0a',
+            fontFamily: 'Orbitron, monospace',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            borderRadius: '4px',
+            boxShadow: '0 0 20px rgba(0, 255, 65, 0.5)'
+          }}>
             <span>Start Trading</span>
             <ChevronRight className="w-5 h-5" />
           </button>
           
-          <button className="bg-white/80 backdrop-blur-sm border border-purple-200 text-purple-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white transition-colors duration-300">
+          <button className="cyber-button px-8 py-4 font-semibold text-lg transition-all duration-300" style={{
+            background: 'transparent',
+            border: '2px solid #333333',
+            color: '#cccccc',
+            fontFamily: 'Orbitron, monospace',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            borderRadius: '4px'
+          }}>
             Learn More
           </button>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        {/* Feature Grid - Chainzoku Style */}
+        <div className="cyber-grid grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
           {[
             { title: "24h Volume", value: "$2.4M", subtitle: "↗ +15.3%" },
             { title: "Total Locked", value: "$12.8M", subtitle: "🔒 Secured" },
@@ -130,20 +229,54 @@ export const ModernGenZHero: React.FC = () => {
           ].map((stat, index) => (
             <div
               key={stat.title}
-              className="bg-white/60 backdrop-blur-sm border border-purple-100 rounded-2xl p-4 hover:bg-white/80 transition-colors duration-300"
+              className="chainzoku-stat cyber-hover p-4 transition-all duration-300"
+              style={{
+                background: 'rgba(21, 21, 21, 0.95)',
+                border: '1px solid #333333',
+                borderRadius: '6px',
+                backdropFilter: 'blur(10px)',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
             >
-              <div className="text-2xl font-bold text-gray-800">{stat.value}</div>
-              <div className="text-sm text-gray-600">{stat.title}</div>
-              <div className="text-xs text-purple-600 font-medium">{stat.subtitle}</div>
+              <div className="chainzoku-stat-value text-2xl font-bold" style={{
+                fontFamily: 'JetBrains Mono, monospace',
+                color: '#00ff41',
+                textShadow: '0 0 5px rgba(0, 255, 65, 0.5)'
+              }}>{stat.value}</div>
+              <div className="chainzoku-stat-label text-sm" style={{
+                color: '#cccccc',
+                fontFamily: 'Orbitron, monospace',
+                textTransform: 'uppercase',
+                fontSize: '0.8rem',
+                letterSpacing: '0.1em'
+              }}>{stat.title}</div>
+              <div className="text-xs font-medium" style={{
+                color: '#00d4ff',
+                fontFamily: 'JetBrains Mono, monospace',
+                textShadow: '0 0 3px rgba(0, 212, 255, 0.5)'
+              }}>{stat.subtitle}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Feature Cards Section */}
+      {/* Feature Cards Section - Chainzoku Style */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 mt-20">
-        <div className="bg-white/80 backdrop-blur-xl border border-purple-200/50 rounded-3xl p-8 shadow-xl">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        <div className="cyber-card p-8" style={{
+          background: 'rgba(21, 21, 21, 0.95)',
+          border: '2px solid #333333',
+          borderRadius: '8px',
+          backdropFilter: 'blur(20px)',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+        }}>
+          <h2 className="text-3xl font-bold text-center mb-8" style={{
+            color: '#ffffff',
+            fontFamily: 'Orbitron, monospace',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            textShadow: '0 0 10px rgba(0, 255, 65, 0.3)'
+          }}>
             Why Choose Goldium?
           </h2>
           
@@ -174,26 +307,58 @@ export const ModernGenZHero: React.FC = () => {
           </div>
         </div>
         
-        {/* Additional Feature Cards */}
+        {/* Additional Feature Cards - Chainzoku Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-          <div className="bg-gradient-to-r from-pink-100 to-purple-100 border border-pink-200 rounded-3xl p-6">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">🎮 Gamified Experience</h3>
-            <p className="text-gray-600">
+          <div className="cyber-card p-6" style={{
+            background: 'rgba(21, 21, 21, 0.95)',
+            border: '1px solid #333333',
+            borderRadius: '8px',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <h3 className="text-xl font-bold mb-4" style={{
+              color: '#ff0080',
+              fontFamily: 'Orbitron, monospace',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              textShadow: '0 0 5px rgba(255, 0, 128, 0.5)'
+            }}>🎮 Gamified Experience</h3>
+            <p style={{
+              color: '#cccccc',
+              fontFamily: 'Rajdhani, monospace'
+            }}>
               Earn XP, unlock achievements, and compete with friends in our gamified DeFi ecosystem.
             </p>
           </div>
           
-          <div className="bg-gradient-to-r from-cyan-100 to-blue-100 border border-cyan-200 rounded-3xl p-6">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">🌍 Global Community</h3>
-            <p className="text-gray-600">
+          <div className="cyber-card p-6" style={{
+            background: 'rgba(21, 21, 21, 0.95)',
+            border: '1px solid #333333',
+            borderRadius: '8px',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <h3 className="text-xl font-bold mb-4" style={{
+              color: '#00d4ff',
+              fontFamily: 'Orbitron, monospace',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              textShadow: '0 0 5px rgba(0, 212, 255, 0.5)'
+            }}>🌍 Global Community</h3>
+            <p style={{
+              color: '#cccccc',
+              fontFamily: 'Rajdhani, monospace'
+            }}>
               Join thousands of traders worldwide in building the future of decentralized finance.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+      {/* Bottom Cyberpunk Fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32" style={{
+        background: 'linear-gradient(to top, #0a0a0a 0%, transparent 100%)'
+      }} />
     </section>
   );
 };

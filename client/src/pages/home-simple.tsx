@@ -171,13 +171,35 @@ export default function HomeSimple() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-cyan-50 relative overflow-hidden">
-      {/* Floating Background Orbs */}
-      <div className="floating-orb floating-orb-1"></div>
-      <div className="floating-orb floating-orb-2"></div>
-      <div className="floating-orb floating-orb-3"></div>
-      <div className="floating-orb floating-orb-4"></div>
-      <div className="floating-orb floating-orb-5"></div>
+    <div className="min-h-screen chainzoku-override relative overflow-hidden" style={{
+      background: '#0a0a0a',
+      position: 'relative'
+    }}>
+      {/* Cyberpunk Grid Background */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: `
+          linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '50px 50px'
+      }} />
+      
+      {/* Matrix Rain Background */}
+      <div className="matrix-rain-container">
+        {Array.from({length: 15}).map((_, i) => (
+          <div 
+            key={i}
+            className="matrix-char"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${8 + Math.random() * 4}s`
+            }}
+          >
+            {String.fromCharCode(0x30A0 + Math.random() * 96)}
+          </div>
+        ))}
+      </div>
       
       {/* Floating Particles */}
       <div className="particle particle-1"></div>

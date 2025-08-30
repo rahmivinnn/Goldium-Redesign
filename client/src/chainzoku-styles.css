@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* Chainzoku-Style Cyberpunk Color Palette */
+:root {
+  /* Primary Cyberpunk Colors */
+  --cyber-neon-green: #00ff41;
+  --cyber-neon-blue: #00d4ff;
+  --cyber-neon-pink: #ff0080;
+  --cyber-neon-purple: #8000ff;
+  --cyber-neon-orange: #ff4000;
+  --cyber-neon-yellow: #ffff00;
+  
+  /* Dark Background Colors */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --bg-card: #151515;
+  --bg-elevated: #202020;
+  
+  /* Grid and Border Colors */
+  --border-primary: #00ff41;
+  --border-secondary: #333333;
+  --border-accent: #00d4ff;
+  --grid-color: rgba(0, 255, 65, 0.1);
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  --text-accent: #00ff41;
+  
+  /* Glow Effects */
+  --glow-green: rgba(0, 255, 65, 0.5);
+  --glow-blue: rgba(0, 212, 255, 0.5);
+  --glow-pink: rgba(255, 0, 128, 0.5);
+  --glow-purple: rgba(128, 0, 255, 0.5);
+  
+  /* Cyberpunk Gradients */
+  --gradient-cyber-main: linear-gradient(135deg, #00ff41 0%, #00d4ff 100%);
+  --gradient-cyber-alt: linear-gradient(135deg, #ff0080 0%, #8000ff 100%);
+  --gradient-cyber-accent: linear-gradient(135deg, #ffff00 0%, #ff4000 100%);
+  --gradient-dark: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  --gradient-card: linear-gradient(135deg, rgba(21, 21, 21, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+}
+
+/* Override Global Styles with Chainzoku Theme */
+body {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Rajdhani', 'JetBrains Mono', monospace !important;
+}
+
+/* Cyberpunk Grid Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Typography Override */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', 'JetBrains Mono', monospace !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Cyberpunk Animations */
+@keyframes cyber-glow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 5px var(--cyber-neon-green),
+      0 0 10px var(--cyber-neon-green),
+      0 0 15px var(--cyber-neon-green);
+  }
+  50% { 
+    box-shadow: 
+      0 0 10px var(--cyber-neon-green),
+      0 0 20px var(--cyber-neon-green),
+      0 0 30px var(--cyber-neon-green);
+  }
+}
+
+@keyframes cyber-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes cyber-scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes cyber-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.9; }
+}
+
+/* Override All Cards with Cyberpunk Style */
+.glass-card,
+.powerful-card {
+  background: var(--gradient-card) !important;
+  border: 2px solid var(--border-secondary) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5) !important,
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before,
+.powerful-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-cyber-main);
+  animation: cyber-pulse 3s infinite;
+}
+
+.glass-card:hover,
+.powerful-card:hover {
+  border-color: var(--border-primary) !important;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.7) !important,
+    0 0 20px var(--glow-green) !important;
+  transform: translateY(-5px) !important;
+}
+
+/* Override All Buttons with Cyberpunk Style */
+.powerful-button,
+.modern-animated-button,
+.glass-button {
+  background: transparent !important;
+  border: 2px solid var(--border-primary) !important;
+  color: var(--cyber-neon-green) !important;
+  font-family: 'Orbitron', monospace !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  border-radius: 4px !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease !important;
+}
+
+.powerful-button::before,
+.modern-animated-button::before,
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-cyber-main);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.powerful-button:hover,
+.modern-animated-button:hover,
+.glass-button:hover {
+  color: var(--bg-primary) !important;
+  border-color: var(--cyber-neon-blue) !important;
+  box-shadow: 0 0 20px var(--glow-blue) !important;
+  transform: translateY(-2px) !important;
+}
+
+.powerful-button:hover::before,
+.modern-animated-button:hover::before,
+.glass-button:hover::before {
+  left: 0;
+}
+
+/* Override All Inputs with Cyberpunk Style */
+.powerful-input,
+.cyber-input {
+  background: var(--bg-card) !important;
+  border: 2px solid var(--border-secondary) !important;
+  border-radius: 4px !important;
+  color: var(--text-primary) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+.powerful-input:focus,
+.cyber-input:focus {
+  border-color: var(--border-primary) !important;
+  box-shadow: 
+    0 0 10px var(--glow-green) !important,
+    inset 0 0 10px rgba(0, 255, 65, 0.1) !important;
+  outline: none !important;
+}
+
+/* Override Navigation with Cyberpunk Style */
+.glass-navbar,
+.powerful-nav {
+  background: rgba(10, 10, 10, 0.95) !important;
+  border-bottom: 2px solid var(--border-primary) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+/* Override Text with Cyberpunk Style */
+.powerful-text {
+  background: var(--gradient-cyber-main) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 20px rgba(0, 255, 65, 0.3) !important;
+}
+
+/* Override Balance Display */
+.balance-display {
+  background: var(--gradient-card) !important;
+  border: 2px solid var(--border-secondary) !important;
+  border-radius: 8px !important;
+}
+
+.balance-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-cyber-main);
+  animation: cyber-pulse 2s infinite;
+}
+
+/* Override Tabs with Cyberpunk Style */
+.powerful-tab {
+  background: var(--bg-card) !important;
+  border: 2px solid var(--border-secondary) !important;
+  border-radius: 4px !important;
+  font-family: 'Orbitron', monospace !important;
+  color: var(--text-secondary) !important;
+  text-transform: uppercase !important;
+}
+
+.powerful-tab:hover {
+  background: rgba(0, 255, 65, 0.1) !important;
+  border-color: var(--border-primary) !important;
+  color: var(--cyber-neon-green) !important;
+}
+
+.powerful-tab[data-state="active"] {
+  background: var(--gradient-cyber-main) !important;
+  border-color: var(--border-primary) !important;
+  color: var(--bg-primary) !important;
+  box-shadow: 0 0 20px var(--glow-green) !important;
+}
+
+/* Chainzoku-Style Specific Overrides */
+.bg-gradient-to-br {
+  background: var(--gradient-dark) !important;
+}
+
+.bg-white {
+  background: var(--bg-card) !important;
+}
+
+.text-gray-800,
+.text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-600,
+.text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-400,
+.text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+.border-purple-200,
+.border-gray-200 {
+  border-color: var(--border-secondary) !important;
+}
+
+.bg-purple-500,
+.bg-gradient-to-r {
+  background: var(--gradient-cyber-main) !important;
+}
+
+/* Chainzoku-Style Sections */
+section {
+  background: var(--bg-primary) !important;
+  position: relative;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gradient-cyber-main);
+  opacity: 0.5;
+}
+
+/* Matrix Rain Background Effect */
+.matrix-rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.05;
+}
+
+.matrix-char {
+  position: absolute;
+  color: var(--cyber-neon-green);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  animation: matrix-rain 8s linear infinite;
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Global Chainzoku Overrides */
+.chainzoku-override {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Override all sections */
+section {
+  background: var(--bg-primary) !important;
+}
+
+/* Override all white/light backgrounds */
+.bg-white,
+.bg-gray-50,
+.bg-purple-50,
+.bg-pink-50,
+.bg-cyan-50,
+.bg-blue-50,
+.bg-gradient-to-br {
+  background: var(--bg-primary) !important;
+}
+
+/* Override all text colors */
+.text-gray-800,
+.text-gray-900,
+.text-black {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-600,
+.text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-400,
+.text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+.text-purple-600,
+.text-purple-700,
+.text-pink-600,
+.text-cyan-600 {
+  color: var(--cyber-neon-green) !important;
+  text-shadow: 0 0 5px var(--glow-green) !important;
+}
+
+/* Override all borders */
+.border-purple-200,
+.border-pink-200,
+.border-cyan-200,
+.border-gray-200,
+.border-white {
+  border-color: var(--border-secondary) !important;
+}
+
+/* Override all cards and containers */
+.glass-card,
+.powerful-card,
+.bg-white\/60,
+.bg-white\/80,
+[class*="bg-white"],
+[class*="bg-gray"] {
+  background: var(--gradient-card) !important;
+  border: 1px solid var(--border-secondary) !important;
+  border-radius: 8px !important;
+}
+
+/* Override all buttons */
+button {
+  font-family: 'Orbitron, monospace' !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.bg-gradient-to-r,
+.bg-purple-500,
+.bg-pink-500 {
+  background: var(--gradient-cyber-main) !important;
+  border: 2px solid var(--border-primary) !important;
+  color: var(--bg-primary) !important;
+}
+
+/* Override headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron, monospace' !important;
+  color: var(--text-primary) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Override rounded corners */
+.rounded-2xl,
+.rounded-3xl,
+.rounded-full {
+  border-radius: 8px !important;
+}
+
+.rounded-xl {
+  border-radius: 6px !important;
+}
+
+.rounded-lg {
+  border-radius: 4px !important;
+}
+
+.chainzoku-card-override {
+  background: var(--gradient-card) !important;
+  border: 2px solid var(--border-secondary) !important;
+  border-radius: 8px !important;
+}
+
+.chainzoku-text-override {
+  color: var(--text-primary) !important;
+  font-family: 'Rajdhani', monospace !important;
+}
+
+.chainzoku-accent-override {
+  color: var(--cyber-neon-green) !important;
+  text-shadow: 0 0 5px var(--glow-green) !important;
+}
+
+.chainzoku-button-override {
+  background: transparent !important;
+  border: 2px solid var(--border-primary) !important;
+  color: var(--cyber-neon-green) !important;
+  font-family: 'Orbitron', monospace !important;
+  text-transform: uppercase !important;
+}
+
+.chainzoku-input-override {
+  background: var(--bg-card) !important;
+  border: 2px solid var(--border-secondary) !important;
+  color: var(--text-primary) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}

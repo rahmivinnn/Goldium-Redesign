@@ -101,29 +101,54 @@ export const ModernGenZLeaderboard: React.FC = () => {
   const otherEntries = mockLeaderboardData.slice(3);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
-      {/* Header */}
+    <div className="max-w-4xl mx-auto p-6 space-y-8 chainzoku-override" style={{background: '#0a0a0a'}}>
+      {/* Header - Chainzoku Style */}
       <div className="text-center mb-8">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+        <h2 className="text-4xl font-bold mb-4" style={{
+          background: 'linear-gradient(135deg, #00ff41 0%, #00d4ff 100%)',
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          fontFamily: 'Orbitron, monospace',
+          textTransform: 'uppercase',
+          letterSpacing: '0.05em',
+          textShadow: '0 0 20px rgba(0, 255, 65, 0.5)'
+        }}>
           🏆 Trading Champions
         </h2>
-        <p className="text-gray-600 text-lg">
+        <p className="text-lg" style={{
+          color: '#cccccc',
+          fontFamily: 'Rajdhani, monospace'
+        }}>
           Top performers competing for glory and rewards
         </p>
       </div>
 
-      {/* Period Selector */}
+      {/* Period Selector - Chainzoku Style */}
       <div className="flex justify-center mb-8">
-        <div className="bg-white/60 backdrop-blur-sm border border-purple-200 rounded-2xl p-1 flex">
+        <div className="cyber-card p-1 flex" style={{
+          background: 'rgba(21, 21, 21, 0.95)',
+          border: '2px solid #333333',
+          borderRadius: '8px',
+          backdropFilter: 'blur(10px)'
+        }}>
           {(['daily', 'weekly', 'monthly'] as LeaderboardPeriod[]).map((period) => (
             <button
               key={period}
-              className={`px-4 py-2 rounded-2xl font-medium transition-all duration-300 ${
-                selectedPeriod === period
-                  ? 'bg-purple-500 text-white shadow-lg'
-                  : 'text-gray-600 hover:text-purple-600'
-              }`}
+              className={`px-4 py-2 font-medium transition-all duration-300`}
               onClick={() => setSelectedPeriod(period)}
+              style={{
+                background: selectedPeriod === period ? 'linear-gradient(135deg, #00ff41 0%, #00d4ff 100%)' : 'transparent',
+                color: selectedPeriod === period ? '#0a0a0a' : '#cccccc',
+                border: selectedPeriod === period ? '1px solid #00ff41' : '1px solid transparent',
+                borderRadius: '4px',
+                fontFamily: 'Orbitron, monospace',
+                textTransform: 'uppercase',
+                fontSize: '0.9rem',
+                fontWeight: '600',
+                letterSpacing: '0.05em',
+                boxShadow: selectedPeriod === period ? '0 0 15px rgba(0, 255, 65, 0.3)' : 'none'
+              }}
             >
               {period.charAt(0).toUpperCase() + period.slice(1)}
             </button>

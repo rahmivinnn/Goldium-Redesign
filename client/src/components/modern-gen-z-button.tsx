@@ -48,14 +48,25 @@ export function ModernGenZButton({
   type = 'button',
 }: ModernButtonProps) {
   const baseClasses = `
-    relative overflow-hidden font-semibold transition-all duration-300 
-    transform-gpu focus:outline-none focus:ring-4 focus:ring-purple-300/50
+    cyber-button relative overflow-hidden font-semibold transition-all duration-300 
+    transform-gpu focus:outline-none focus:ring-4 focus:ring-green-300/50
     disabled:opacity-50 disabled:cursor-not-allowed
     ${buttonVariants[variant]}
     ${sizeVariants[size]}
     ${fullWidth ? 'w-full' : ''}
     ${className}
   `;
+  
+  // Chainzoku style overrides
+  const chainzokuStyle = {
+    background: 'transparent',
+    border: '2px solid #00ff41',
+    color: '#00ff41',
+    fontFamily: 'Orbitron, monospace',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.1em',
+    borderRadius: '4px'
+  };
 
   const buttonContent = (
     <>
@@ -95,6 +106,7 @@ export function ModernGenZButton({
       className={baseClasses}
       onClick={onClick}
       disabled={disabled || isLoading}
+      style={chainzokuStyle}
     >
       {buttonContent}
     </button>

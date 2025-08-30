@@ -24,103 +24,156 @@ export const ModernGenZNavbar: React.FC = () => {
 
   return (
     <>
-      {/* Desktop Navigation */}
+      {/* Desktop Navigation - Chainzoku Style */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/80 backdrop-blur-xl border-b border-purple-200/30 shadow-lg' 
+            ? 'glass-navbar border-b-2 border-primary shadow-lg' 
             : 'bg-transparent'
-        }`}
+        } chainzoku-override`}
+        style={{
+          background: isScrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent',
+          borderBottomColor: isScrolled ? '#00ff41' : 'transparent'
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+            {/* Logo - Chainzoku Style */}
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <div className="w-10 h-10 gradient-rainbow-pastel rounded-2xl flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 cyber-card flex items-center justify-center" style={{background: 'linear-gradient(135deg, #00ff41 0%, #00d4ff 100%)'}}>
+                  <Sparkles className="w-5 h-5 text-black" />
                 </div>
                 <div className="absolute -top-1 -right-1">
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                  <div className="w-3 h-3 rounded-full animate-cyber-pulse" style={{background: '#ffff00', boxShadow: '0 0 10px #ffff00'}}></div>
                 </div>
               </div>
               
               <div className="hidden sm:block">
-                <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <span className="text-xl font-bold chainzoku-accent-override" style={{
+                  background: 'linear-gradient(135deg, #00ff41 0%, #00d4ff 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textShadow: '0 0 10px rgba(0, 255, 65, 0.5)'
+                }}>
                   GOLDIUM
                 </span>
-                <div className="text-xs text-gray-500">DeFi Platform</div>
+                <div className="text-xs chainzoku-text-override" style={{color: '#888888'}}>DeFi Platform</div>
               </div>
             </div>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Navigation Links - Chainzoku Style */}
             <div className="hidden md:flex items-center space-x-1">
               {navigationItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`relative px-4 py-2 rounded-2xl transition-all duration-300 cursor-pointer ${
+                  className={`chainzoku-nav-item relative px-4 py-2 rounded transition-all duration-300 cursor-pointer ${
                     item.active 
-                      ? 'bg-white/20 text-purple-700' 
-                      : 'text-gray-600 hover:text-purple-600 hover:bg-white/10'
+                      ? 'active' 
+                      : ''
                   }`}
+                  style={{
+                    color: item.active ? '#00ff41' : '#cccccc',
+                    background: item.active ? 'rgba(0, 255, 65, 0.2)' : 'transparent',
+                    textShadow: item.active ? '0 0 5px rgba(0, 255, 65, 0.5)' : 'none',
+                    fontFamily: 'Orbitron, monospace',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}
                 >
-                  {item.active && (
-                    <div className="absolute inset-0 rounded-2xl bg-white/20" />
-                  )}
                   <span className="relative font-medium">{item.name}</span>
                   {item.active && (
-                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full" />
+                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-full h-0.5 rounded-full" style={{background: '#00ff41', boxShadow: '0 0 5px #00ff41'}} />
                   )}
                 </a>
               ))}
             </div>
 
-            {/* Connect Wallet Button */}
+            {/* Connect Wallet Button - Chainzoku Style */}
             <div className="hidden sm:block">
-              <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-2xl font-medium text-sm hover:shadow-lg transition-all duration-300">
+              <button className="cyber-button-primary px-6 py-2 font-medium text-sm transition-all duration-300" style={{
+                background: 'transparent',
+                border: '2px solid #00ff41',
+                color: '#00ff41',
+                fontFamily: 'Orbitron, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                borderRadius: '4px',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
                 Connect Wallet
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Chainzoku Style */}
             <button
-              className="md:hidden p-2 rounded-2xl glass-button hover-lift"
+              className="md:hidden p-2 glass-button hover-lift"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{
+                background: 'rgba(21, 21, 21, 0.95)',
+                border: '2px solid #333333',
+                borderRadius: '4px',
+                transition: 'all 0.3s ease'
+              }}
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-gray-600" />
+                <X className="w-5 h-5" style={{color: '#00ff41'}} />
               ) : (
-                <Menu className="w-5 h-5 text-gray-600" />
+                <Menu className="w-5 h-5" style={{color: '#00ff41'}} />
               )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Chainzoku Style */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="mt-4 bg-white/80 backdrop-blur-xl rounded-2xl p-4 border border-purple-200/30">
+            <div className="mt-4 cyber-modal p-4" style={{
+              background: 'rgba(21, 21, 21, 0.95)',
+              border: '2px solid #00ff41',
+              borderRadius: '8px',
+              backdropFilter: 'blur(20px)'
+            }}>
               <div className="flex flex-col space-y-2">
                 {navigationItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`flex items-center space-x-3 p-3 rounded-2xl transition-all duration-300 cursor-pointer ${
-                      item.active 
-                        ? 'bg-purple-100 text-purple-700' 
-                        : 'text-gray-600 hover:bg-gray-100'
-                    }`}
+                    className={`flex items-center space-x-3 p-3 transition-all duration-300 cursor-pointer`}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    style={{
+                      background: item.active ? 'rgba(0, 255, 65, 0.2)' : 'transparent',
+                      color: item.active ? '#00ff41' : '#cccccc',
+                      border: `1px solid ${item.active ? '#00ff41' : '#333333'}`,
+                      borderRadius: '4px',
+                      fontFamily: 'Orbitron, monospace',
+                      textTransform: 'uppercase',
+                      fontSize: '0.85rem',
+                      fontWeight: '500',
+                      letterSpacing: '0.05em'
+                    }}
                   >
                     <span className="font-medium">{item.name}</span>
-                    {item.active && <div className="w-2 h-2 bg-purple-400 rounded-full" />}
+                    {item.active && <div className="w-2 h-2 rounded-full" style={{background: '#00ff41', boxShadow: '0 0 5px #00ff41'}} />}
                   </a>
                 ))}
               </div>
               
-              <div className="pt-4 border-t border-gray-200">
-                <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-2xl font-medium hover:shadow-lg transition-all duration-300">
+              <div className="pt-4" style={{borderTop: '1px solid #333333'}}>
+                <button className="w-full cyber-button-primary px-6 py-3 font-medium transition-all duration-300" style={{
+                  background: 'transparent',
+                  border: '2px solid #00ff41',
+                  color: '#00ff41',
+                  fontFamily: 'Orbitron, monospace',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  borderRadius: '4px'
+                }}>
                   Connect Wallet
                 </button>
               </div>
@@ -129,11 +182,15 @@ export const ModernGenZNavbar: React.FC = () => {
         )}
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Chainzoku Style */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 md:hidden"
+          className="fixed inset-0 z-30 md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
+          style={{
+            background: 'rgba(0, 0, 0, 0.8)',
+            backdropFilter: 'blur(10px)'
+          }}
         />
       )}
     </>
